@@ -1,20 +1,28 @@
 [gd_scene format=3 uid="uid://cu8n50jk8rnyw"]
 
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://c0r4duc5tqs7s" path="res://assets/straight-track.png" id="2_0wfyh"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o5qli"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
+texture = ExtResource("2_0wfyh")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.6712427, 8, -0.7927656, 8, 3.747775, -8, 3.6918383)
+
+[sub_resource type="TileSet" id="TileSet_jyhfs"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_sugp2")
 
 [node name="Game" type="Node2D" unique_id=1063326671]
+
+[node name="TileMap" type="TileMap" parent="." unique_id=2067268671]
+tile_set = SubResource("TileSet_jyhfs")
+format = 2
+layer_0/tile_data = PackedInt32Array(196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 196616, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196624, 0, 0, 131090, 0, 0, 131091, 0, 0, 65557, 0, 0, 65558, 0, 0, 196632, 0, 0, 196633, 0, 0, 196634, 0, 0, 196635, 0, 0, 65559, 0, 0, 14, 0, 0, 15, 0, 0, 131089, 0, 0)
 
 [node name="Player" parent="." unique_id=364403916 instance=ExtResource("1_o5qli")]
 position = Vector2(63, 43)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=586235432]
-position = Vector2(64, 36)
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=586235432]
+position = Vector2(1, -7)
 zoom = Vector2(4, 4)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1872455392]
-position = Vector2(64, 60)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=92415702]
-shape = SubResource("WorldBoundaryShape2D_o5qli")
+position_smoothing_enabled = true
