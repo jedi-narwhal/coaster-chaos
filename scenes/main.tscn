@@ -34,16 +34,16 @@ repeat_size = Vector2(512, 0)
 autoscroll = Vector2(-100, 0)
 repeat_times = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=536822848]
+[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=536822848]
 position = Vector2(77, 7)
 texture = ExtResource("1_sugp2")
 
-[node name="TileMap2" type="TileMap" parent="Parallax2D" unique_id=1531189745]
+[node name="BGTileMap" type="TileMap" parent="Parallax2D" unique_id=1531189745]
 tile_set = SubResource("TileSet_tefeu")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65535, 0, 0, -65532, 131072, 0, -1, 262144, 0, -131066, 0, 0, -65528, 131072, 0, -196598, 262144, 0, -131061, 0, 0)
 
-[node name="TileMap" type="TileMap" parent="." unique_id=2067268671]
+[node name="TrackTileMap" type="TileMap" parent="." unique_id=2067268671]
 tile_set = SubResource("TileSet_jyhfs")
 format = 2
 layer_0/tile_data = PackedInt32Array(196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 196616, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196624, 0, 0, 131090, 0, 0, 131091, 0, 0, 65557, 0, 0, 65558, 0, 0, 196632, 0, 0, 196633, 0, 0, 196634, 0, 0, 196635, 0, 0, 65559, 0, 0, 14, 0, 0, 15, 0, 0, 131089, 0, 0)
