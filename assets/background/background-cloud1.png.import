@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2d2h32gaogyk"
-path="res://.godot/imported/cart-spritesheet.png-61cff4fad04f3561884d73b054f18c03.ctex"
+uid="uid://c1fvbmtmocufn"
+path="res://.godot/imported/background-cloud1.png-3bd31dcb9b9b94b98a90496a000a8485.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cart-spritesheet.png"
-dest_files=["res://.godot/imported/cart-spritesheet.png-61cff4fad04f3561884d73b054f18c03.ctex"]
+source_file="res://assets/background/background-cloud1.png"
+dest_files=["res://.godot/imported/background-cloud1.png-3bd31dcb9b9b94b98a90496a000a8485.ctex"]
 
 [params]
 
