@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c0r4duc5tqs7s" path="res://assets/tileset/straight-track.png" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://b7b1g72w8mgcl" path="res://assets/background/background-sky.png" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://assets/tileset/obstacle-decor-spritesheet.png" id="2_jyhfs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
@@ -28,6 +29,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sugp2")
 
 [node name="Game" type="Node2D" unique_id=1063326671]
+script = ExtResource("1_tbgi4")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1469931002]
 repeat_size = Vector2(512, 0)
