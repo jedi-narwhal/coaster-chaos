@@ -5,4 +5,5 @@ extends Camera2D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	var player_x = player.global_position.x
-	global_position = Vector2(player_x, global_position.y)
+	var player_y = player.global_position.y
+	global_position = Vector2(player_x, player_y)

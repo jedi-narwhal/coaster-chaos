@@ -10,6 +10,7 @@ const MAX_TRACK_HEIGHT := 20
 var switch_track_dist := 100
 
 var forward_direction := Vector2.RIGHT
+var floor_normal := Vector2.UP
 
 @onready var up_raycast: RayCast2D = $UpRayCast
 @onready var down_raycast: RayCast2D = $DownRayCast
@@ -33,15 +34,16 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = SPEED * forward_direction
 	
-	_set_forward_direction()
+	floor_normal = _get_floor_normal()
+	forward_direction = _get_forward_direction()
 	_rotate_children()
 	_handle_jumps()
 	move_and_slide()
 
 func _rotate_children() -> void:
-	if _get_floor_normal() == Vector2.INF:
+	if floor_normal == Vector2.INF:
 		return
-	var rotation_angle: float = _get_floor_normal().angle() + PI / 2
+	var rotation_angle: float = floor_normal.angle() + PI / 2
 	$AnimatedSprite2D.global_rotation = rotation_angle
 	$CollisionShape2D.global_rotation = rotation_angle
 	up_raycast.global_rotation = rotation_angle
@@ -53,24 +55,23 @@ func _handle_jumps() -> void:
 	# Jump to higher track
 	if Input.is_action_just_pressed("up") and \
 	is_on_floor() and up_raycast.is_colliding():
-		target_pos = _get_track_position(up_raycast)
+		target_pos = _get_raw_track_position(up_raycast)
 		if target_pos != Vector2.INF:
 			_switch_to_track(target_pos)
 	
 	# Drop to lower track
 	if Input.is_action_just_pressed("down") and \
 	is_on_floor() and down_raycast.is_colliding():
-		target_pos = _get_track_position(down_raycast)
+		target_pos = _get_raw_track_position(down_raycast)
 		if target_pos != Vector2.INF:
 			_switch_to_track(target_pos)
 
-func _get_track_position(raycast: RayCast2D) -> Vector2:
+func _get_raw_track_position(raycast: RayCast2D) -> Vector2:
 	var collision_point: Vector2 = raycast.get_collision_point()
 	var collision_normal: Vector2 = raycast.get_collision_normal()
 	var half_cart_height: float = $CollisionShape2D.shape.extents.y
 	
 	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
-	var forward: Vector2 = SPEED * forward_direction * SWITCH_DURATION
 	
 	# hit underneath a track (normal is pointing downwards if positive y)
 	# create a new raycast above the track to find the top of the rail
@@ -82,6 +83,9 @@ func _get_track_position(raycast: RayCast2D) -> Vector2:
 		query.exclude = [self]
 		var result: Dictionary = space_state.intersect_ray(query)
 		if result:
+			if _get_expected_forward_direction(result["position"]) != Vector2.INF:
+				forward_direction = _get_expected_forward_direction(result["position"])
+			var forward: Vector2 = SPEED * forward_direction * SWITCH_DURATION
 			return forward + result["position"] + result["normal"] * half_cart_height
 	else:
 		var query: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(
@@ -91,7 +95,27 @@ func _get_track_position(raycast: RayCast2D) -> Vector2:
 		query.exclude = [self]
 		var result: Dictionary = space_state.intersect_ray(query)
 		if result:
+			if _get_expected_forward_direction(result["position"]) != Vector2.INF:
+				forward_direction = _get_expected_forward_direction(result["position"])
+			var forward: Vector2 = SPEED * forward_direction * SWITCH_DURATION
 			return forward + result["position"] + result["normal"] * half_cart_height
+	return Vector2.INF
+
+func _get_expected_forward_direction(position: Vector2) -> Vector2:
+	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
+	var query: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(
+			position,
+			position - MAX_TRACK_HEIGHT * _get_floor_normal()
+		)
+	var result: Dictionary = space_state.intersect_ray(query)
+	if result:
+		#print(Vector2(-result["normal"].y, result["normal"].x))
+		return Vector2(-result["normal"].y, result["normal"].x)
+	return Vector2.INF
+
+func _get_floor_collision_point() -> Vector2:
+	if down_raycast.is_colliding():
+		return down_raycast.get_collision_point()
 	return Vector2.INF
 
 func _get_floor_normal() -> Vector2:
@@ -99,10 +123,10 @@ func _get_floor_normal() -> Vector2:
 		return down_raycast.get_collision_normal()
 	return Vector2.INF
 
-func _set_forward_direction() -> void:
-	var floor_normal: Vector2 = _get_floor_normal()
+func _get_forward_direction() -> Vector2:
 	if floor_normal != Vector2.INF:
-		forward_direction = Vector2(-floor_normal.y, floor_normal.x)
+		return Vector2(-floor_normal.y, floor_normal.x)
+	return forward_direction
 
 func _switch_to_track(target: Vector2) -> void:
 	_switching_track = true
@@ -116,6 +140,12 @@ func _switch_to_track(target: Vector2) -> void:
 		target,
 		SWITCH_DURATION
 	)
+	#tween.parallel().tween_property(
+		#self,
+		#"global_rotation",
+		#_get_expected_forward_direction(target).angle(),
+		#SWITCH_DURATION
+	#)
 	
 	# Return to normal physics on callback
 	tween.tween_callback(func():
