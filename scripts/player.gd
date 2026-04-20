@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var fake_health = 3 # DEBUG: remove later
+
 const SPEED := 50.0
 const SWITCH_DURATION := 0.2
 
