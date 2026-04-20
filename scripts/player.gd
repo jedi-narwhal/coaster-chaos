@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var fake_health = 3 # DEBUG: remove later
+var fake_health = 3 # FIXME: remove/change later
 
 const SPEED := 50.0
 const SWITCH_DURATION := 0.2
@@ -124,3 +124,9 @@ func _switch_to_track(target: Vector2) -> void:
 		_switching_track = false
 		velocity = SPEED * forward_direction
 	)
+
+func health() -> int:
+	return fake_health; # FIXME: replace with name of health varible
+
+func remove_health() -> void:
+	fake_health -= 1; # FIXME: replace with name of health varible
