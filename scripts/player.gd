@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED := 50.0
-const SWITCH_DURATION := 0.2
+const SWITCH_DURATION := 0.1
 
 # Change this if a new track's height is taller
 const MAX_TRACK_HEIGHT := 20
@@ -38,21 +38,18 @@ func _physics_process(delta: float) -> void:
 	if not on_track:
 		velocity += get_gravity() * delta
 	else:
-		var target_direction := _get_forward_direction()
-		forward_direction = forward_direction.lerp(
-			target_direction, ROTATION_SMOOTHING * delta
-		).normalized()
+		forward_direction = _get_forward_direction()
 		velocity = SPEED * forward_direction
-		velocity += -floor_normal * 8
+		velocity += -floor_normal * 10
 	
 	var detected_normal := _get_floor_normal()
 	if detected_normal != Vector2.INF:
 		floor_normal = detected_normal
 	
-	queue_redraw()
 	_rotate_children(delta)
 	_handle_jumps()
 	move_and_slide()
+	queue_redraw()
 
 func _rotate_children(delta: float) -> void:
 	if floor_normal == Vector2.INF:
@@ -187,8 +184,10 @@ func _draw() -> void:
 	if up_raycast.is_colliding():
 		var up_pos := _get_raw_track_position(up_raycast)
 		if up_pos != Vector2.INF:
-			draw_circle(to_local(up_pos), 2, Color.WHITE)
+			draw_line(up_raycast.position, to_local(up_pos), Color.RED, 1.0)
+			draw_circle(to_local(up_pos), 2, Color.RED)
 	if down_raycast.is_colliding():
 		var down_pos := _get_raw_track_position(down_raycast)
 		if down_pos != Vector2.INF:
-			draw_circle(to_local(down_pos), 2, Color.WHITE)
+			draw_line(up_raycast.position, to_local(down_pos), Color.BLUE, 1.0)
+			draw_circle(to_local(down_pos), 2, Color.BLUE)
