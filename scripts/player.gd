@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 var player_health = 3
-
-const SPEED := 50.0
+const MIN_SPEED := 25.0
+const MAX_SPEED := 100.0
 const SWITCH_DURATION := 0.1
 
 # Change this if a new track's height is taller
@@ -15,6 +15,9 @@ var switch_track_dist := 100
 var forward_direction := Vector2.RIGHT
 var floor_normal := Vector2.UP
 
+var speed := 50.0
+var speed_gain := 3.0 / 100.0 # Percentage per second
+
 @onready var up_raycast: RayCast2D = $UpRayCast
 @onready var down_raycast: RayCast2D = $DownRayCast
 @onready var floor_raycast: RayCast2D = $FloorRayCast
@@ -26,7 +29,7 @@ func _ready() -> void:
 	up_raycast.target_position.y = -switch_track_dist
 	down_raycast.target_position.y = switch_track_dist
 	floor_raycast.target_position.y = $CollisionShape2D.shape.height / 2.0 + 2.0
-	velocity = SPEED * forward_direction
+	velocity = speed * forward_direction
 
 func _physics_process(delta: float) -> void:
 	# Ignore physics if currently tweening
@@ -40,12 +43,15 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	else:
 		forward_direction = _get_forward_direction()
-		velocity = SPEED * forward_direction
+		velocity = speed * forward_direction
 		velocity += -floor_normal * 20
 	
 	var detected_normal := _get_floor_normal()
 	if detected_normal != Vector2.INF:
 		floor_normal = detected_normal
+	
+	speed += speed * speed_gain * delta
+	clamp(speed, MIN_SPEED, MAX_SPEED)
 	
 	_rotate_children(delta)
 	_handle_jumps()
@@ -128,7 +134,7 @@ func _get_expected_track_position(raw_pos: Vector2) -> Vector2:
 	var result := space_state.intersect_ray(query)
 	if result:
 		var surface_normal: Vector2 = result["normal"]
-		var forward: Vector2 = SPEED * forward_direction * SWITCH_DURATION
+		var forward: Vector2 = speed * forward_direction * SWITCH_DURATION
 		return forward + raw_pos + surface_normal * half_cart_height
 	return Vector2.INF
 
@@ -177,7 +183,7 @@ func _switch_to_track(target: Vector2) -> void:
 
 	tween.tween_callback(func():
 		_switching_track = false
-		velocity = SPEED * forward_direction
+		velocity = speed * forward_direction
 		floor_raycast.global_rotation = target_angle
 	)
 
