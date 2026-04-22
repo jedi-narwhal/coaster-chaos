@@ -29,11 +29,18 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
+radius = 4.0
+height = 16.0
+
 [node name="Player" type="CharacterBody2D" unique_id=364403916]
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_block_on_wall = false
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1557141155]
-shape = SubResource("RectangleShape2D_sweqy")
+shape = SubResource("CapsuleShape2D_cvnsp")
 
 [node name="UpRayCast" type="RayCast2D" parent="." unique_id=488918619]
 position = Vector2(7, 0)
@@ -45,13 +52,7 @@ position = Vector2(7, 0)
 target_position = Vector2(0, 100)
 collision_mask = 2
 
-[node name="Cart" type="AnimatedSprite2D" parent="." unique_id=1268186321]
-visible = false
-sprite_frames = SubResource("SpriteFrames_hqtel")
-animation = &"rolling"
-frame_progress = 0.28352067
-
-[node name="Carts" type="Node2D" parent="." unique_id=426326007 node_paths=PackedStringArray("collider", "cart_reference")]
-script = ExtResource("2_qhqgy")
-collider = NodePath("../CollisionShape2D")
-cart_reference = NodePath("../Cart")
+[node name="FloorRayCast" type="RayCast2D" parent="." unique_id=1815044161]
+position = Vector2(7, 0)
+target_position = Vector2(0, 17)
+collision_mask = 2
