@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var player_health = 3
+
 const SPEED := 50.0
 const SWITCH_DURATION := 0.1
 
@@ -190,3 +192,9 @@ func _draw() -> void:
 		if down_pos != Vector2.INF:
 			draw_line(up_raycast.position, to_local(down_pos), Color.BLUE, 1.0)
 			draw_circle(to_local(down_pos), 2, Color.BLUE)
+
+func health() -> int:
+	return player_health
+
+func remove_health() -> void:
+	player_health -= 1
