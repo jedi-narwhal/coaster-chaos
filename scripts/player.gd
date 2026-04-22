@@ -23,7 +23,7 @@ var _switching_track := false
 func _ready() -> void:
 	up_raycast.target_position.y = -switch_track_dist
 	down_raycast.target_position.y = switch_track_dist
-	floor_raycast.target_position.y = $CollisionShape2D.shape.height / 2.0 + 12.0
+	floor_raycast.target_position.y = $CollisionShape2D.shape.height / 2.0 + 2.0
 	velocity = SPEED * forward_direction
 
 func _physics_process(delta: float) -> void:
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		forward_direction = _get_forward_direction()
 		velocity = SPEED * forward_direction
-		velocity += -floor_normal * 10
+		velocity += -floor_normal * 20
 	
 	var detected_normal := _get_floor_normal()
 	if detected_normal != Vector2.INF:
