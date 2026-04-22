@@ -17,7 +17,6 @@ var forward_direction := Vector2.RIGHT
 var _switching_track := false
 
 func _ready() -> void:
-	$AnimatedSprite2D.play("rolling")
 	up_raycast.target_position.y = -switch_track_dist
 	down_raycast.target_position.y = switch_track_dist
 	velocity = SPEED * forward_direction
@@ -42,7 +41,6 @@ func _rotate_children() -> void:
 	if _get_floor_normal() == Vector2.INF:
 		return
 	var rotation_angle: float = _get_floor_normal().angle() + PI / 2
-	$AnimatedSprite2D.global_rotation = rotation_angle
 	$CollisionShape2D.global_rotation = rotation_angle
 	up_raycast.global_rotation = rotation_angle
 	down_raycast.global_rotation = rotation_angle

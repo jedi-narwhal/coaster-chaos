@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://c1y5pku52vebe"]
 
 [ext_resource type="Texture2D" uid="uid://2d2h32gaogyk" path="res://Art/Player/cart-spritesheet.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://bn66r6fkcgs2d" path="res://Scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://bn66r6fkcgs2d" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://vrxjpu708oct" path="res://scripts/cart_manager.gd" id="2_qhqgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sweqy"]
+size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_4flbx")
@@ -25,16 +29,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sweqy"]
-size = Vector2(16, 16)
-
 [node name="Player" type="CharacterBody2D" unique_id=364403916]
 script = ExtResource("1_g2els")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1268186321]
-sprite_frames = SubResource("SpriteFrames_hqtel")
-animation = &"rolling"
-frame_progress = 0.28352067
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1557141155]
 shape = SubResource("RectangleShape2D_sweqy")
@@ -48,3 +44,14 @@ collision_mask = 2
 position = Vector2(7, 0)
 target_position = Vector2(0, 100)
 collision_mask = 2
+
+[node name="Cart" type="AnimatedSprite2D" parent="." unique_id=1268186321]
+visible = false
+sprite_frames = SubResource("SpriteFrames_hqtel")
+animation = &"rolling"
+frame_progress = 0.28352067
+
+[node name="Carts" type="Node2D" parent="." unique_id=426326007 node_paths=PackedStringArray("collider", "cart_reference")]
+script = ExtResource("2_qhqgy")
+collider = NodePath("../CollisionShape2D")
+cart_reference = NodePath("../Cart")
