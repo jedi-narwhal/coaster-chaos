@@ -1,11 +1,11 @@
 [gd_scene format=4 uid="uid://cu8n50jk8rnyw"]
 
-[ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://Scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://b7b1g72w8mgcl" path="res://Art/Background/background-sky.png" id="1_sugp2"]
-[ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scripts/main.gd" id="1_tbgi4"]
-[ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scripts/player_camera.gd" id="2_21xkr"]
+[ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://Scripts/main.gd" id="1_tbgi4"]
+[ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://Scripts/player_camera.gd" id="2_21xkr"]
 [ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://Art/Background/obstacle-decor-spritesheet.png" id="2_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://djmmnl1hrmybd" path="res://scenes/score_manager.tscn" id="3_o6xl0"]
+[ext_resource type="PackedScene" path="res://Scenes/score_manager.tscn" id="3_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://b31iib1r2qves" path="res://Art/Track/track-spritesheet.png" id="5_tefeu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]

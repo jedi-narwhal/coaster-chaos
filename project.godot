@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Coaster Chaos"
-run/main_scene="uid://cu8n50jk8rnyw"
+run/main_scene="uid://bq6dxn1p80mq4"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-AudioManager="*uid://cytp4veot80ns"
+AudioManager="*uid://bhyynl5a2d2p1"
 
 [display]
 

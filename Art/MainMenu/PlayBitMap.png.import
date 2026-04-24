@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bre6jqsnv7c6x"
+path="res://.godot/imported/PlayBitMap.png-9f28fb4b7425121e308d5d7304387b2e.res"
+
+[deps]
+
+source_file="res://Art/MainMenu/PlayBitMap.png"
+dest_files=["res://.godot/imported/PlayBitMap.png-9f28fb4b7425121e308d5d7304387b2e.res"]
+
+[params]
+
+create_from=0
+threshold=0.0
