@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cr4kwu3nt2n7m"]
+
+[ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://Scripts/obstacle.gd" id="1_dxsar"]
+[ext_resource type="Texture2D" uid="uid://efe8ttmmmw04" path="res://Art/Obstacles/sunscreen.png" id="2_xgd6t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1a0t"]
+size = Vector2(8, 14)
+
+[node name="Area2D" type="Area2D" unique_id=239287508]
+script = ExtResource("1_dxsar")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=708787111]
+texture = ExtResource("2_xgd6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1703517828]
+shape = SubResource("RectangleShape2D_t1a0t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

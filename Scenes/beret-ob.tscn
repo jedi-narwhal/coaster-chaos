@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dqgs6axlly3pi"]
+
+[ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://Scripts/obstacle.gd" id="1_agpdb"]
+[ext_resource type="Texture2D" uid="uid://bky4if4bl54o0" path="res://Art/Obstacles/beret-hat.png" id="2_jtdfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oanwh"]
+size = Vector2(14, 7)
+
+[node name="Area2D" type="Area2D" unique_id=317850869]
+script = ExtResource("1_agpdb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=42032470]
+texture = ExtResource("2_jtdfy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1906162181]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_oanwh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
