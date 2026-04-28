@@ -7,6 +7,7 @@
 size = Vector2(14, 14)
 
 [node name="obstacle" type="Area2D" unique_id=1888632384]
+collision_layer = 2
 script = ExtResource("1_2p81s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=34021816]
@@ -14,3 +15,5 @@ texture = ExtResource("1_15o2q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1575341523]
 shape = SubResource("RectangleShape2D_2p81s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

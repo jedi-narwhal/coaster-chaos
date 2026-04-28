@@ -32,6 +32,10 @@ func _ready() -> void:
 	velocity = speed * forward_direction
 
 func _physics_process(delta: float) -> void:
+	# Rolling animation
+	if velocity.length() > 0:
+		$AnimatedSprite2D.play("rolling")
+	
 	# Ignore physics if currently tweening
 	if _switching_track:
 		return

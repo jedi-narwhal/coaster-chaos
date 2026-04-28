@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://Scripts/main.gd" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://Scripts/player_camera.gd" id="2_21xkr"]
 [ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://Art/Background/obstacle-decor-spritesheet.png" id="2_jyhfs"]
-[ext_resource type="PackedScene" path="res://Scenes/score_manager.tscn" id="3_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://djmmnl1hrmybd" path="res://Scenes/score_manager.tscn" id="3_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://b31iib1r2qves" path="res://Art/Track/track-spritesheet.png" id="5_tefeu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
@@ -88,5 +88,4 @@ tile_set = SubResource("TileSet_jyhfs")
 
 [node name="Player" parent="." unique_id=364403916 instance=ExtResource("1_o5qli")]
 position = Vector2(56, 40)
-collision_mask = 2
 floor_max_angle = 3.1415927
