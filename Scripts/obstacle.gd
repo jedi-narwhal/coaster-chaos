@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var score_manager: Control
+@export var end_screen: PackedScene
 
 @export var speed_reduction := 50.0 / 100.0 # First number is the percentage change
 @export var score_decrement := 10
@@ -21,6 +22,5 @@ func _on_body_entered(body: Node2D) -> void:
 	else: # else : jump to game over scene
 		# for now this prints game over
 		body.remove_health()
-		print("Game Over")
 	
-	queue_free()
+	call_deferred("queue_free")

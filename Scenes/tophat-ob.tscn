@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ttw3qfy8e202"]
 
 [ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://Scripts/obstacle.gd" id="1_3sd4a"]
+[ext_resource type="PackedScene" uid="uid://dqnohj5d8opr1" path="res://Scenes/end_screen.tscn" id="2_kv84t"]
 [ext_resource type="Texture2D" uid="uid://ojo7jg1v1tn8" path="res://Art/Obstacles/tophat.png" id="2_yxpwp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kv84t"]
@@ -8,6 +9,7 @@ size = Vector2(14, 14)
 
 [node name="Area2D" type="Area2D" unique_id=339142876]
 script = ExtResource("1_3sd4a")
+end_screen = ExtResource("2_kv84t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=837359713]
 texture = ExtResource("2_yxpwp")

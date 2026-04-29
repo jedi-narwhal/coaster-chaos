@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dqnohj5d8opr1"]
+
+[ext_resource type="Script" uid="uid://cvpu8c2oluiif" path="res://Scripts/end_screen.gd" id="1_f2mtv"]
+[ext_resource type="FontFile" uid="uid://b6xuicnun3nrn" path="res://Fonts/georgia.ttf" id="2_1gwaw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhpww"]
+bg_color = Color(0.14509805, 0.5882353, 0.9411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdxnu"]
+bg_color = Color(0.024837874, 0.35369745, 0.5925379, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yanq"]
+bg_color = Color(0.044510417, 0.43362013, 0.7178016, 1)
+
+[node name="EndScreen" type="Control" unique_id=2051812256]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f2mtv")
+
+[node name="Label" type="Label" parent="." unique_id=765950384]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 52.0
+offset_right = 386.0
+offset_bottom = 140.0
+theme_override_fonts/font = ExtResource("2_1gwaw")
+theme_override_font_sizes/font_size = 64
+text = "you died :("
+
+[node name="Button" type="Button" parent="." unique_id=551927916]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 163.0
+offset_right = 538.0
+offset_bottom = 289.0
+theme_override_fonts/font = ExtResource("2_1gwaw")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_bhpww")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gdxnu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8yanq")
+text = "restart?"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

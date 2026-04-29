@@ -64,7 +64,6 @@ sources/0 = SubResource("TileSetAtlasSource_21xkr")
 
 [node name="Game" type="Node2D" unique_id=1063326671]
 script = ExtResource("1_tbgi4")
-end_screen = ExtResource("8_6iyac")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=586235432]
 position = Vector2(63, 41)
@@ -103,6 +102,7 @@ tile_set = SubResource("TileSet_jyhfs")
 [node name="Player" parent="." unique_id=364403916 instance=ExtResource("1_o5qli")]
 position = Vector2(56, 40)
 floor_max_angle = 3.1415927
+end_screen = ExtResource("8_6iyac")
 
 [node name="obstacle" parent="." unique_id=1888632384 node_paths=PackedStringArray("score_manager") instance=ExtResource("8_344ge")]
 position = Vector2(169, 72)
@@ -132,10 +132,8 @@ score_manager = NodePath("../Camera2D/ScoreManager")
 position = Vector2(725, -8)
 score_manager = NodePath("../Camera2D/ScoreManager")
 
-[node name="KillPlane" type="Area2D" parent="." unique_id=1556265604]
+[node name="KillBox" type="Area2D" parent="." unique_id=1556265604]
 position = Vector2(0, 200)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane" unique_id=1107474011]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillBox" unique_id=1107474011]
 shape = SubResource("WorldBoundaryShape2D_d1ilt")
-
-[connection signal="body_entered" from="KillPlane" to="Player" method="_on_kill_plane_body_entered"]
