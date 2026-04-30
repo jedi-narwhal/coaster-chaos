@@ -1,22 +1,24 @@
 extends CharacterBody2D
 
-var player_health = 3
 const MIN_SPEED := 25.0
 const MAX_SPEED := 100.0
 const SWITCH_DURATION := 0.1
 
-# Change this if a new track's height is taller
+## Change this if a new track's height is taller
 const MAX_TRACK_HEIGHT := 20
 const ROTATION_SMOOTHING := PI * 2
 
-# Change this to change how far up/down the cart can see
+## Change this to change how far up/down the cart can see
 var switch_track_dist := 100
+
+var current_tween: Tween = null
 
 var forward_direction := Vector2.RIGHT
 var floor_normal := Vector2.UP
 
+var player_health := 3
 var speed := 50.0
-var speed_gain := 3.0 / 100.0 # Percentage per second
+var speed_gain := 0.03
 
 @onready var up_raycast: RayCast2D = $UpRayCast
 @onready var down_raycast: RayCast2D = $DownRayCast
@@ -25,6 +27,8 @@ var speed_gain := 3.0 / 100.0 # Percentage per second
 
 var on_track := false
 var _switching_track := false
+
+signal health_lost
 
 func _ready() -> void:
 	up_raycast.target_position.y = -switch_track_dist
@@ -56,13 +60,14 @@ func _physics_process(delta: float) -> void:
 		floor_normal = detected_normal
 	
 	speed += speed * speed_gain * delta
-	clamp(speed, MIN_SPEED, MAX_SPEED)
+	speed = clamp(speed, MIN_SPEED, MAX_SPEED)
 	
 	_rotate_children(delta)
 	_handle_jumps()
 	move_and_slide()
 	queue_redraw()
 
+## Rotates the floor normal and angle of the sprite and collision.
 func _rotate_children(delta: float) -> void:
 	if floor_normal == Vector2.INF:
 		return
@@ -78,7 +83,7 @@ func _rotate_children(delta: float) -> void:
 
 func _handle_jumps() -> void:
 	# Jump to higher track
-	if Input.is_action_just_pressed("up") and on_track and up_raycast.is_colliding():
+	if Input.is_action_just_pressed("up") and up_raycast.is_colliding():
 		var raw_pos := _get_raw_track_position(up_raycast)
 		if raw_pos != Vector2.INF:
 			var expected_dir := _get_expected_forward_direction(raw_pos)
@@ -89,7 +94,7 @@ func _handle_jumps() -> void:
 				_switch_to_track(target_pos)
 
 	# Drop to lower track
-	if Input.is_action_just_pressed("down") and on_track and down_raycast.is_colliding():
+	if Input.is_action_just_pressed("down") and down_raycast.is_colliding():
 		if down_raycast.get_collision_normal().y < 0:
 			var raw_pos := _get_raw_track_position(down_raycast)
 			if raw_pos != Vector2.INF:
@@ -174,19 +179,18 @@ func _switch_to_track(target: Vector2) -> void:
 		target_angle = expected_dir.angle()
 	else:
 		target_angle = forward_direction.angle()
-
-	var tween := create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_QUINT)
-	tween.tween_property(self, "global_position", target, SWITCH_DURATION)
-	tween.parallel().tween_property(
+	current_tween = create_tween()
+	current_tween.set_ease(Tween.EASE_OUT)
+	current_tween.set_trans(Tween.TRANS_QUINT)
+	current_tween.tween_property(self, "global_position", target, SWITCH_DURATION)
+	current_tween.parallel().tween_property(
 		$AnimatedSprite2D, "global_rotation", target_angle, SWITCH_DURATION
 	)
-	tween.parallel().tween_property(
+	current_tween.parallel().tween_property(
 		$CollisionShape2D, "global_rotation", target_angle, SWITCH_DURATION
 	)
 
-	tween.tween_callback(func():
+	current_tween.tween_callback(func():
 		_switching_track = false
 		velocity = speed * forward_direction
 		floor_raycast.global_rotation = target_angle
@@ -204,14 +208,16 @@ func _draw() -> void:
 			draw_line(up_raycast.position, to_local(down_pos), Color.BLUE, 1.0)
 			draw_circle(to_local(down_pos), 2, Color.BLUE)
 
-func health() -> int:
+
+
+func _on_kill_plane_body_entered(_body: Node2D) -> void:
+	get_tree().call_deferred("change_scene_to_packed", end_screen)
+
+func get_health() -> int:
 	return player_health
 
 func remove_health() -> void:
+	health_lost.emit()
 	player_health -= 1
-	if player_health == 0:
+	if player_health <= 0:
 		get_tree().change_scene_to_packed(end_screen)
-
-
-func _on_kill_plane_body_entered(body: Node2D) -> void:
-	get_tree().change_scene_to_packed(end_screen)
