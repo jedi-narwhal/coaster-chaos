@@ -218,7 +218,6 @@ func _draw() -> void:
 			draw_circle(to_local(down_pos), 2, Color.BLUE)
 
 
-
 func _on_kill_plane_body_entered(_body: Node2D) -> void:
 	get_tree().call_deferred("change_scene_to_packed", end_screen)
 

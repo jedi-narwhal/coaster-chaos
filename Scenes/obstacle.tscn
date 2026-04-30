@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dptup4qxo0ubx"]
+[gd_scene format=3 uid="uid://bicxc8d552e64"]
 
 [ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://Scripts/obstacle.gd" id="1_2p81s"]
 [ext_resource type="Texture2D" uid="uid://bs6c752gul8kq" path="res://Art/Obstacles/popcorn.png" id="1_15o2q"]

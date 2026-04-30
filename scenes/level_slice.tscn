@@ -1,12 +1,11 @@
 [gd_scene format=4 uid="uid://beldttg8oha8x"]
 
-[ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scripts/main.gd" id="1_4v4tk"]
-[ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scripts/player_camera.gd" id="2_rqwf3"]
-[ext_resource type="PackedScene" uid="uid://djmmnl1hrmybd" path="res://scenes/score_manager.tscn" id="3_g8xan"]
-[ext_resource type="Texture2D" uid="uid://b7b1g72w8mgcl" path="res://Art/Background/background-sky.png" id="4_nqcka"]
+[ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://Scripts/main.gd" id="1_4v4tk"]
+[ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://Scripts/player_camera.gd" id="2_rqwf3"]
+[ext_resource type="PackedScene" uid="uid://djmmnl1hrmybd" path="res://Scenes/score_manager.tscn" id="3_g8xan"]
 [ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://Art/Background/obstacle-decor-spritesheet.png" id="5_q0aw8"]
 [ext_resource type="Texture2D" uid="uid://b31iib1r2qves" path="res://Art/Track/track-spritesheet.png" id="6_wpwya"]
-[ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player.tscn" id="7_o633h"]
+[ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://Scenes/player.tscn" id="7_o633h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
 texture = ExtResource("5_q0aw8")
@@ -74,7 +73,6 @@ repeat_times = 4
 [node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=536822848]
 position = Vector2(77, 93.5)
 scale = Vector2(1, 1.6757813)
-texture = ExtResource("4_nqcka")
 
 [node name="CloudLayer" type="TileMapLayer" parent="Parallax2D" unique_id=685078123]
 use_parent_material = true
@@ -88,5 +86,4 @@ tile_set = SubResource("TileSet_jyhfs")
 
 [node name="Player" parent="." unique_id=364403916 instance=ExtResource("7_o633h")]
 position = Vector2(56, 40)
-collision_mask = 2
 floor_max_angle = 3.1415927
