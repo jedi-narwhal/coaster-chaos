@@ -81,6 +81,13 @@ func _rotate_children(delta: float) -> void:
 	$CollisionShape2D.global_rotation = smooth_angle
 	floor_raycast.global_rotation = target_angle
 
+## Force rotates the floor normal and angle of the sprite and collision.
+func _force_rotate_children() -> void:
+	var target_angle: float = forward_direction.angle()
+	$AnimatedSprite2D.global_rotation = target_angle
+	$CollisionShape2D.global_rotation = target_angle
+	floor_raycast.global_rotation = target_angle
+
 func _handle_jumps() -> void:
 	# Jump to higher track
 	if Input.is_action_just_pressed("up") and up_raycast.is_colliding():
@@ -92,6 +99,7 @@ func _handle_jumps() -> void:
 			var target_pos := _get_expected_track_position(raw_pos)
 			if target_pos != Vector2.INF:
 				_switch_to_track(target_pos)
+				_force_rotate_children()
 
 	# Drop to lower track
 	if Input.is_action_just_pressed("down") and down_raycast.is_colliding():
@@ -104,6 +112,7 @@ func _handle_jumps() -> void:
 				var target_pos := _get_expected_track_position(raw_pos)
 				if target_pos != Vector2.INF:
 					_switch_to_track(target_pos)
+					_force_rotate_children()
 
 func _get_raw_track_position(raycast: RayCast2D) -> Vector2:
 	var collision_point: Vector2 = raycast.get_collision_point()
