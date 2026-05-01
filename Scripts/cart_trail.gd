@@ -3,18 +3,18 @@ extends Node
 var sprite_history: Array[Dictionary] = []
 var trail_sprites: Array[AnimatedSprite2D] = []
 
-## This is extra cart count btw, original is cart_sprite
+## Number of trailing carts behind the player.
 @export var cart_count: int = 2
 @export var cart_sprite: AnimatedSprite2D
 @export var player: CharacterBody2D
 
-# Number of delay frames for each cart
+## Number of delay frames for each cart.
 @export var cart_spacing: int = 30
 
 func _ready() -> void:
 	add_carts()
 
-## Add cart_count carts to the player.
+## Adds a trail of [param cart_count] carts behind the player.
 func add_carts() -> void:
 	for i in range(cart_count):
 		var trail_sprite := cart_sprite.duplicate() as AnimatedSprite2D
