@@ -7,4 +7,5 @@ var scenes := {
 }
 
 func change_scene(scene_name: String) -> void:
-	get_tree().call_deferred("change_scene_to_packed", scenes[scene_name])
+	if scene_name in scenes:
+		get_tree().call_deferred("change_scene_to_packed", scenes[scene_name])

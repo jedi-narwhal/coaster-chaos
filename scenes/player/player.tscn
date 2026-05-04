@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://2d2h32gaogyk" path="res://assets/art/Player/cart-spritesheet.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bn66r6fkcgs2d" path="res://scenes/player/player.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://bkbbgns6v3pqy" path="res://scenes/player/cart_trail.gd" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://1nycnoe2kq14" path="res://assets/sfx/JumpUp.mp3" id="4_p47bc"]
+[ext_resource type="AudioStream" uid="uid://p7ih64pr5pvr" path="res://assets/sfx/JumpDown.mp3" id="5_75vfm"]
+[ext_resource type="AudioStream" uid="uid://bykxgagf4sxsm" path="res://assets/sfx/ObstacleHit.mp3" id="6_75vfm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_4flbx")
@@ -63,5 +66,14 @@ collision_mask = 2
 script = ExtResource("3_6t5aa")
 cart_sprite = NodePath("../AnimatedSprite2D")
 player = NodePath("..")
+
+[node name="JumpUpSound" type="AudioStreamPlayer" parent="." unique_id=649949571]
+stream = ExtResource("4_p47bc")
+
+[node name="JumpDownSound" type="AudioStreamPlayer" parent="." unique_id=68796172]
+stream = ExtResource("5_75vfm")
+
+[node name="ObstacleHitSound" type="AudioStreamPlayer" parent="." unique_id=1735289851]
+stream = ExtResource("6_75vfm")
 
 [connection signal="health_lost" from="." to="CartTrail" method="_on_player_health_lost"]

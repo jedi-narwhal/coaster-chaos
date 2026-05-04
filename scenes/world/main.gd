@@ -5,6 +5,8 @@ extends Node2D
 
 
 func _ready() -> void:
+	AudioManager.change_music("game")
+	ScoreManager.reset_score()
 	ScoreManager.score_changed.connect(_on_score_changed)
 
 

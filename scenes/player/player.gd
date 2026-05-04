@@ -23,6 +23,9 @@ var speed_gain := 0.03
 @onready var up_raycast: RayCast2D = $UpRayCast
 @onready var down_raycast: RayCast2D = $DownRayCast
 @onready var floor_raycast: RayCast2D = $FloorRayCast
+@onready var jump_up: AudioStreamPlayer = $JumpUpSound
+@onready var jump_down: AudioStreamPlayer = $JumpDownSound
+@onready var obstacle_hit: AudioStreamPlayer = $ObstacleHitSound
 
 var on_track := false
 var _switching_track := false
@@ -92,6 +95,7 @@ func _handle_jumps() -> void:
 	if Input.is_action_just_pressed("up") and up_raycast.is_colliding():
 		var raw_pos := _get_raw_track_position(up_raycast)
 		if raw_pos != Vector2.INF:
+			jump_up.play()
 			var expected_dir := _get_expected_forward_direction(raw_pos)
 			if expected_dir != Vector2.INF:
 				forward_direction = expected_dir
@@ -105,6 +109,7 @@ func _handle_jumps() -> void:
 		if down_raycast.get_collision_normal().y < 0:
 			var raw_pos := _get_raw_track_position(down_raycast)
 			if raw_pos != Vector2.INF:
+				jump_down.play()
 				var expected_dir := _get_expected_forward_direction(raw_pos)
 				if expected_dir != Vector2.INF:
 					forward_direction = expected_dir
@@ -224,6 +229,7 @@ func get_health() -> int:
 	return player_health
 
 func remove_health() -> void:
+	obstacle_hit.play()
 	health_lost.emit()
 	player_health -= 1
 	if player_health <= 0:

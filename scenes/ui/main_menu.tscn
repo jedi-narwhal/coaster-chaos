@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bq6dxn1p80mq4"]
 
-[ext_resource type="Texture2D" uid="uid://ds1yenplbjcd0" path="res://assets/art/MainMenu/MainMenu.png" id="1_48xlc"]
+[ext_resource type="Texture2D" uid="uid://ds1yenplbjcd0" path="res://assets/art/main_menu/MainMenu.png" id="1_48xlc"]
 [ext_resource type="Script" uid="uid://bysmp28u00ptc" path="res://scenes/ui/main_menu.gd" id="1_opfnp"]
-[ext_resource type="Texture2D" uid="uid://ckno4jnhcvnsb" path="res://assets/art/MainMenu/Play.png" id="2_1ehe0"]
-[ext_resource type="BitMap" uid="uid://bre6jqsnv7c6x" path="res://assets/art/MainMenu/PlayBitMap.png" id="3_n45e2"]
-[ext_resource type="Texture2D" uid="uid://cudf5dn36mag" path="res://assets/art/MainMenu/Options.png" id="4_opfnp"]
-[ext_resource type="BitMap" uid="uid://bxcffuobk8bnb" path="res://assets/art/MainMenu/OptionsBitMap.png" id="5_cp0ys"]
-[ext_resource type="Texture2D" uid="uid://2b1rtusp2cet" path="res://assets/art/MainMenu/PlayHover.png" id="5_yhxw7"]
-[ext_resource type="Texture2D" uid="uid://cyq3g8nc8a33b" path="res://assets/art/MainMenu/OptionsHover.png" id="8_trj04"]
+[ext_resource type="Texture2D" uid="uid://ckno4jnhcvnsb" path="res://assets/art/main_menu/Play.png" id="2_1ehe0"]
+[ext_resource type="BitMap" uid="uid://bre6jqsnv7c6x" path="res://assets/art/main_menu/PlayBitMap.png" id="3_n45e2"]
+[ext_resource type="Texture2D" uid="uid://cudf5dn36mag" path="res://assets/art/main_menu/Options.png" id="4_opfnp"]
+[ext_resource type="BitMap" uid="uid://bxcffuobk8bnb" path="res://assets/art/main_menu/OptionsBitMap.png" id="5_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://2b1rtusp2cet" path="res://assets/art/main_menu/PlayHover.png" id="5_yhxw7"]
+[ext_resource type="Texture2D" uid="uid://cyq3g8nc8a33b" path="res://assets/art/main_menu/OptionsHover.png" id="8_trj04"]
 
 [node name="MainMenu" type="Control" unique_id=1071416660]
 layout_mode = 3

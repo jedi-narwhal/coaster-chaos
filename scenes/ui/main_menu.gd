@@ -1,6 +1,10 @@
 extends Control
 
 
+func _ready() -> void:
+	AudioManager.change_music("main_menu")
+
+
 func _on_play_button_pressed() -> void:
 	SceneManager.change_scene("main")
 

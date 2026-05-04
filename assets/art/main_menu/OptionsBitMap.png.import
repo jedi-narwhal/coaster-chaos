@@ -3,12 +3,12 @@
 importer="bitmap"
 type="BitMap"
 uid="uid://bxcffuobk8bnb"
-path="res://.godot/imported/OptionsBitMap.png-d16924c7ed202ee6254d32fe1b6d6924.res"
+path="res://.godot/imported/OptionsBitMap.png-bccc7eddb9085873f80a87ba528deb54.res"
 
 [deps]
 
-source_file="res://assets/art/MainMenu/OptionsBitMap.png"
-dest_files=["res://.godot/imported/OptionsBitMap.png-d16924c7ed202ee6254d32fe1b6d6924.res"]
+source_file="res://assets/art/main_menu/OptionsBitMap.png"
+dest_files=["res://.godot/imported/OptionsBitMap.png-bccc7eddb9085873f80a87ba528deb54.res"]
 
 [params]
 
