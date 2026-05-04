@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqnohj5d8opr1"]
 
-[ext_resource type="Script" uid="uid://cvpu8c2oluiif" path="res://scripts/end_screen.gd" id="1_f2mtv"]
+[ext_resource type="Script" uid="uid://cvpu8c2oluiif" path="res://scenes/ui/end_screen.gd" id="1_f2mtv"]
 [ext_resource type="FontFile" uid="uid://b6xuicnun3nrn" path="res://assets/fonts/georgia.ttf" id="2_1gwaw"]
 
 

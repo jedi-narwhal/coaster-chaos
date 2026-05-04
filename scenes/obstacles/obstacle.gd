@@ -1,7 +1,6 @@
 extends Area2D
 
 @export var textures: Array[Texture2D]
-@export var score_manager: Control
 @export var end_screen: PackedScene
 
 #@export var speed_reduction := 0.5
@@ -21,7 +20,7 @@ func _on_body_entered(body: Node2D) -> void:
 	body.remove_health()
 	$CollisionShape2D.set_deferred("disabled", true)
 	#body.speed -= body.speed * speed_reduction
-	score_manager.mod_score(-1 * score_decrement)
+	ScoreManager.mod_score(-1 * score_decrement)
 	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)

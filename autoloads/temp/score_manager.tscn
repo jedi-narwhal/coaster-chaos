@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://djmmnl1hrmybd"]
 
-[ext_resource type="Script" uid="uid://c72wuuk1pfoeg" path="res://scripts/score_manager.gd" id="1_sgrrx"]
+[ext_resource type="Script" uid="uid://c72wuuk1pfoeg" path="res://autoloads/score_manager.gd" id="1_sgrrx"]
+
 
 [node name="ScoreManager" type="Control" unique_id=393965023]
 layout_mode = 3

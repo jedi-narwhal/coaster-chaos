@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bicxc8d552e64"]
 
-[ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://scenes/obstacle/obstacle.gd" id="1_2p81s"]
+[ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://scenes/obstacles/obstacle.gd" id="1_2p81s"]
 [ext_resource type="Texture2D" uid="uid://bs6c752gul8kq" path="res://assets/art/Obstacles/popcorn.png" id="1_15o2q"]
 [ext_resource type="PackedScene" uid="uid://dqnohj5d8opr1" path="res://scenes/ui/end_screen.tscn" id="2_rvx1i"]
 [ext_resource type="Texture2D" uid="uid://bky4if4bl54o0" path="res://assets/art/Obstacles/beret-hat.png" id="3_0drx6"]
