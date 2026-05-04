@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://scenes/obstacles/obstacle.gd" id="1_2p81s"]
 [ext_resource type="Texture2D" uid="uid://bs6c752gul8kq" path="res://assets/art/Obstacles/popcorn.png" id="1_15o2q"]
-[ext_resource type="PackedScene" uid="uid://dqnohj5d8opr1" path="res://scenes/ui/end_screen.tscn" id="2_rvx1i"]
+[ext_resource type="PackedScene" uid="uid://bq6dxn1p80mq4" path="res://scenes/ui/main_menu.tscn" id="2_rvx1i"]
 [ext_resource type="Texture2D" uid="uid://bky4if4bl54o0" path="res://assets/art/Obstacles/beret-hat.png" id="3_0drx6"]
 [ext_resource type="Texture2D" uid="uid://cjvooit4vr1ui" path="res://assets/art/Obstacles/spiky-bubble.png" id="4_bcfqo"]
 [ext_resource type="Texture2D" uid="uid://ojo7jg1v1tn8" path="res://assets/art/Obstacles/tophat.png" id="5_u4pg3"]
 [ext_resource type="Texture2D" uid="uid://efe8ttmmmw04" path="res://assets/art/Obstacles/sunscreen.png" id="6_kxyuj"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2p81s"]
 size = Vector2(14, 14)

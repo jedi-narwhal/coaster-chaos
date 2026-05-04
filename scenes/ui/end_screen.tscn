@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cvpu8c2oluiif" path="res://scenes/ui/end_screen.gd" id="1_f2mtv"]
 [ext_resource type="FontFile" uid="uid://b6xuicnun3nrn" path="res://assets/fonts/georgia.ttf" id="2_1gwaw"]
-[ext_resource type="PackedScene" uid="uid://bq6dxn1p80mq4" path="res://scenes/ui/main_menu.tscn" id="2_wgyui"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbeiw"]
 bg_color = Color(0.14509805, 0.5882353, 0.9411765, 1)
@@ -21,7 +20,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f2mtv")
-main_menu_scene = ExtResource("2_wgyui")
 
 [node name="Label" type="Label" parent="." unique_id=1720886153]
 layout_mode = 0
@@ -45,3 +43,5 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gbeiw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3qfag")
 theme_override_styles/hover = SubResource("StyleBoxFlat_j46xo")
 text = "restart?"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

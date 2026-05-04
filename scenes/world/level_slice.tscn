@@ -3,10 +3,9 @@
 [ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/world/main.gd" id="1_4v4tk"]
 [ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scenes/player/player_camera.gd" id="2_rqwf3"]
 [ext_resource type="PackedScene" uid="uid://djmmnl1hrmybd" path="res://autoloads/temp/score_manager.tscn" id="3_g8xan"]
-[ext_resource type="Texture2D" path="res://Art/Background/obstacle-decor-spritesheet.png" id="5_q0aw8"]
-[ext_resource type="Texture2D" path="res://Art/Track/track-spritesheet.png" id="6_wpwya"]
+[ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://assets/art/Background/obstacle-decor-spritesheet.png" id="5_q0aw8"]
+[ext_resource type="Texture2D" uid="uid://b31iib1r2qves" path="res://assets/art/Track/track-spritesheet.png" id="6_wpwya"]
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="7_o633h"]
-
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
 texture = ExtResource("5_q0aw8")
