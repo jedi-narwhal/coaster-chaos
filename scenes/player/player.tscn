@@ -2,9 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://2d2h32gaogyk" path="res://assets/art/Player/cart-spritesheet.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bn66r6fkcgs2d" path="res://scenes/player/player.gd" id="1_g2els"]
-[ext_resource type="PackedScene" uid="uid://dqnohj5d8opr1" path="res://scenes/ui/end_screen.tscn" id="2_vgqql"]
-[ext_resource type="Script" uid="uid://bkbbgns6v3pqy" path="res://scenes/player/carts/cart_trail.gd" id="3_6t5aa"]
-
+[ext_resource type="Script" uid="uid://bkbbgns6v3pqy" path="res://scenes/player/cart_trail.gd" id="3_6t5aa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_4flbx")
@@ -38,7 +36,6 @@ floor_stop_on_slope = false
 floor_constant_speed = true
 floor_block_on_wall = false
 script = ExtResource("1_g2els")
-end_screen = ExtResource("2_vgqql")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=633359827]
 sprite_frames = SubResource("SpriteFrames_vgqql")

@@ -1,19 +1,19 @@
-[gd_scene format=3 uid="uid://dqnohj5d8opr1"]
+[gd_scene format=3 uid="uid://c56avua7ys7u4"]
 
 [ext_resource type="Script" uid="uid://cvpu8c2oluiif" path="res://scenes/ui/end_screen.gd" id="1_f2mtv"]
 [ext_resource type="FontFile" uid="uid://b6xuicnun3nrn" path="res://assets/fonts/georgia.ttf" id="2_1gwaw"]
+[ext_resource type="PackedScene" uid="uid://bq6dxn1p80mq4" path="res://scenes/ui/main_menu.tscn" id="2_wgyui"]
 
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhpww"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbeiw"]
 bg_color = Color(0.14509805, 0.5882353, 0.9411765, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdxnu"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qfag"]
 bg_color = Color(0.024837874, 0.35369745, 0.5925379, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yanq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j46xo"]
 bg_color = Color(0.044510417, 0.43362013, 0.7178016, 1)
 
-[node name="EndScreen" type="Control" unique_id=2051812256]
+[node name="Control" type="Control" unique_id=356134631]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,8 +21,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f2mtv")
+main_menu_scene = ExtResource("2_wgyui")
 
-[node name="Label" type="Label" parent="." unique_id=765950384]
+[node name="Label" type="Label" parent="." unique_id=1720886153]
 layout_mode = 0
 offset_left = 67.0
 offset_top = 52.0
@@ -32,7 +33,7 @@ theme_override_fonts/font = ExtResource("2_1gwaw")
 theme_override_font_sizes/font_size = 64
 text = "you died :("
 
-[node name="Button" type="Button" parent="." unique_id=551927916]
+[node name="Button" type="Button" parent="." unique_id=1890752201]
 layout_mode = 0
 offset_left = 290.0
 offset_top = 163.0
@@ -40,9 +41,7 @@ offset_right = 538.0
 offset_bottom = 289.0
 theme_override_fonts/font = ExtResource("2_1gwaw")
 theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = SubResource("StyleBoxFlat_bhpww")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_gdxnu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_8yanq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gbeiw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3qfag")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j46xo")
 text = "restart?"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

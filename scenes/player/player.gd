@@ -23,7 +23,6 @@ var speed_gain := 0.03
 @onready var up_raycast: RayCast2D = $UpRayCast
 @onready var down_raycast: RayCast2D = $DownRayCast
 @onready var floor_raycast: RayCast2D = $FloorRayCast
-@export var end_screen: PackedScene
 
 var on_track := false
 var _switching_track := false
@@ -219,7 +218,7 @@ func _draw() -> void:
 
 
 func _on_kill_plane_body_entered(_body: Node2D) -> void:
-	get_tree().call_deferred("change_scene_to_packed", end_screen)
+	SceneManager.change_scene("end_screen")
 
 func get_health() -> int:
 	return player_health
@@ -228,4 +227,4 @@ func remove_health() -> void:
 	health_lost.emit()
 	player_health -= 1
 	if player_health <= 0:
-		get_tree().change_scene_to_packed(end_screen)
+		SceneManager.change_scene("end_screen")

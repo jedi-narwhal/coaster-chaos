@@ -1,7 +1,9 @@
-extends Control
+extends Node
 
-@export var score: int = 0
+var score: int = 0
+
+signal score_changed(score)
 
 func mod_score(diff: int):
 	score += diff
-	$CanvasLayer/Label.text = "Score: " + str(score)
+	score_changed.emit(score)

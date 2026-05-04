@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://cu8n50jk8rnyw"]
 
 [ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/world/main.gd" id="1_qip8x"]
-[ext_resource type="PackedScene" uid="uid://dqnohj5d8opr1" path="res://scenes/ui/end_screen.tscn" id="2_oaya2"]
 [ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scenes/player/player_camera.gd" id="3_wcbaq"]
 [ext_resource type="Texture2D" uid="uid://c7aw3qwgs3wxe" path="res://assets/art/Background/BG-Skyline.png" id="5_i5mec"]
 [ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://assets/art/Background/obstacle-decor-spritesheet.png" id="6_5bu78"]
@@ -63,7 +62,6 @@ sources/0 = SubResource("TileSetAtlasSource_21xkr")
 
 [node name="Game" type="Node2D" unique_id=1063326671]
 script = ExtResource("1_qip8x")
-end_screen = ExtResource("2_oaya2")
 
 [node name="ScoreCanvas" type="CanvasLayer" parent="." unique_id=1844504890]
 

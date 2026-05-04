@@ -1,8 +1,6 @@
 extends Area2D
 
 @export var textures: Array[Texture2D]
-@export var end_screen: PackedScene
-
 #@export var speed_reduction := 0.5
 @export var score_decrement := 10
 
