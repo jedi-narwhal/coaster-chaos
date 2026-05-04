@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ho65uou3isbj"
+path="res://.godot/imported/Coaster Chaos.mp3-8b662c2dd5d16db147fc3b5b1cd7659e.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Coaster Chaos.mp3"
+dest_files=["res://.godot/imported/Coaster Chaos.mp3-8b662c2dd5d16db147fc3b5b1cd7659e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
