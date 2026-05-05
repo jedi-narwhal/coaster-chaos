@@ -22,7 +22,7 @@ var speed_gain := 0.03
 
 @onready var up_raycast: RayCast2D = $UpRayCast
 @onready var down_raycast: RayCast2D = $DownRayCast
-@onready var floor_raycast: RayCast2D = $FloorRayCast
+@onready var floor_raycast: RayCast2D = $CollisionShape2D/FloorRayCast
 @onready var jump_up: AudioStreamPlayer = $JumpUpSound
 @onready var jump_down: AudioStreamPlayer = $JumpDownSound
 @onready var obstacle_hit: AudioStreamPlayer = $ObstacleHitSound
@@ -30,7 +30,6 @@ var speed_gain := 0.03
 var on_track := false
 var _switching_track := false
 
-signal health_lost
 
 func _ready() -> void:
 	up_raycast.target_position.y = -switch_track_dist
@@ -47,6 +46,13 @@ func _physics_process(delta: float) -> void:
 	if _switching_track:
 		return
 	
+	var detected_normal := _get_floor_normal()
+	if detected_normal != Vector2.INF:
+		floor_normal = detected_normal
+	else:
+		floor_normal = Vector2.UP
+	up_direction = floor_normal
+	
 	on_track = floor_raycast.is_colliding()
 	
 	# Apply gravity
@@ -55,11 +61,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		forward_direction = _get_forward_direction()
 		velocity = speed * forward_direction
-		velocity += -floor_normal * 20
-	
-	var detected_normal := _get_floor_normal()
-	if detected_normal != Vector2.INF:
-		floor_normal = detected_normal
+		velocity += -floor_normal * 10
 	
 	speed += speed * speed_gain * delta
 	speed = clamp(speed, MIN_SPEED, MAX_SPEED)
@@ -68,6 +70,7 @@ func _physics_process(delta: float) -> void:
 	_handle_jumps()
 	move_and_slide()
 	queue_redraw()
+
 
 ## Rotates the floor normal and angle of the sprite and collision.
 func _rotate_children(delta: float) -> void:
@@ -81,14 +84,12 @@ func _rotate_children(delta: float) -> void:
 	)
 	$AnimatedSprite2D.global_rotation = smooth_angle
 	$CollisionShape2D.global_rotation = smooth_angle
-	floor_raycast.global_rotation = target_angle
 
 ## Force rotates the floor normal and angle of the sprite and collision.
 func _force_rotate_children() -> void:
 	var target_angle: float = forward_direction.angle()
 	$AnimatedSprite2D.global_rotation = target_angle
 	$CollisionShape2D.global_rotation = target_angle
-	floor_raycast.global_rotation = target_angle
 
 func _handle_jumps() -> void:
 	# Jump to higher track
@@ -206,7 +207,6 @@ func _switch_to_track(target: Vector2) -> void:
 	current_tween.tween_callback(func():
 		_switching_track = false
 		velocity = speed * forward_direction
-		floor_raycast.global_rotation = target_angle
 	)
 
 func _draw() -> void:
@@ -230,7 +230,7 @@ func get_health() -> int:
 
 func remove_health() -> void:
 	obstacle_hit.play()
-	health_lost.emit()
+	$CartTrail.on_player_health_lost()
 	player_health -= 1
 	if player_health <= 0:
 		SceneManager.change_scene("end_screen")

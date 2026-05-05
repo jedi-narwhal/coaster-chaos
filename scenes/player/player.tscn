@@ -35,9 +35,7 @@ height = 16.0
 
 [node name="Player" type="CharacterBody2D" unique_id=364403916]
 collision_mask = 2
-floor_stop_on_slope = false
 floor_constant_speed = true
-floor_block_on_wall = false
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=633359827]
@@ -47,6 +45,11 @@ animation = &"rolling"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1557141155]
 shape = SubResource("CapsuleShape2D_cvnsp")
 
+[node name="FloorRayCast" type="RayCast2D" parent="CollisionShape2D" unique_id=1815044161]
+position = Vector2(7, 0)
+target_position = Vector2(0, 18)
+collision_mask = 2
+
 [node name="UpRayCast" type="RayCast2D" parent="." unique_id=488918619]
 position = Vector2(7, 0)
 target_position = Vector2(0, -100)
@@ -55,11 +58,6 @@ collision_mask = 2
 [node name="DownRayCast" type="RayCast2D" parent="." unique_id=600352019]
 position = Vector2(7, 0)
 target_position = Vector2(0, 100)
-collision_mask = 2
-
-[node name="FloorRayCast" type="RayCast2D" parent="." unique_id=1815044161]
-position = Vector2(7, 0)
-target_position = Vector2(0, 18)
 collision_mask = 2
 
 [node name="CartTrail" type="Node" parent="." unique_id=1753409741 node_paths=PackedStringArray("cart_sprite", "player")]
@@ -75,5 +73,3 @@ stream = ExtResource("5_75vfm")
 
 [node name="ObstacleHitSound" type="AudioStreamPlayer" parent="." unique_id=1735289851]
 stream = ExtResource("6_75vfm")
-
-[connection signal="health_lost" from="." to="CartTrail" method="_on_player_health_lost"]

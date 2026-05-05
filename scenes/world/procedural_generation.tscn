@@ -1,18 +1,18 @@
-[gd_scene format=4 uid="uid://cu8n50jk8rnyw"]
+[gd_scene format=4 uid="uid://clv383igd32dk"]
 
-[ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/world/main.gd" id="1_qip8x"]
-[ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scenes/player/player_camera.gd" id="3_wcbaq"]
-[ext_resource type="Texture2D" uid="uid://c7aw3qwgs3wxe" path="res://assets/art/Background/BG-Skyline.png" id="5_i5mec"]
-[ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://assets/art/Background/obstacle-decor-spritesheet.png" id="6_5bu78"]
-[ext_resource type="Texture2D" uid="uid://e124p8gqxyme" path="res://assets/art/Background/BG-Hills.png" id="7_pibea"]
-[ext_resource type="Texture2D" uid="uid://bhvwbd6ols8jn" path="res://assets/art/Background/BG-Coaster.png" id="8_bolr6"]
-[ext_resource type="Texture2D" uid="uid://c5m0ssc47o67" path="res://assets/art/Background/BG-FG.png" id="9_hbyw3"]
-[ext_resource type="Texture2D" uid="uid://b31iib1r2qves" path="res://assets/art/Track/track-spritesheet.png" id="10_ubvmu"]
-[ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="11_6gnby"]
-[ext_resource type="PackedScene" uid="uid://bicxc8d552e64" path="res://scenes/track/obstacle.tscn" id="12_wrw41"]
+[ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/world/main.gd" id="1_c6ek7"]
+[ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scenes/player/player_camera.gd" id="2_cgxr5"]
+[ext_resource type="Texture2D" uid="uid://c7aw3qwgs3wxe" path="res://assets/art/Background/BG-Skyline.png" id="3_vosdc"]
+[ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://assets/art/Background/obstacle-decor-spritesheet.png" id="4_f18vo"]
+[ext_resource type="Texture2D" uid="uid://e124p8gqxyme" path="res://assets/art/Background/BG-Hills.png" id="5_3yiud"]
+[ext_resource type="Texture2D" uid="uid://bhvwbd6ols8jn" path="res://assets/art/Background/BG-Coaster.png" id="6_315rb"]
+[ext_resource type="Texture2D" uid="uid://c5m0ssc47o67" path="res://assets/art/Background/BG-FG.png" id="7_ark56"]
+[ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="8_fgfq8"]
+[ext_resource type="Texture2D" uid="uid://b31iib1r2qves" path="res://assets/art/Track/track-spritesheet.png" id="9_1occ5"]
+[ext_resource type="Script" uid="uid://br46ytaa6frly" path="res://scenes/track/track_layer.gd" id="10_m8gdv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
-texture = ExtResource("6_5bu78")
+texture = ExtResource("4_f18vo")
 0:0/size_in_atlas = Vector2i(2, 2)
 0:0/0 = 0
 2:0/size_in_atlas = Vector2i(2, 2)
@@ -24,8 +24,8 @@ texture = ExtResource("6_5bu78")
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_tbgi4")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ggrwn"]
-texture = ExtResource("10_ubvmu")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8yo5y"]
+texture = ExtResource("9_1occ5")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -64,8 +64,6 @@ texture = ExtResource("10_ubvmu")
 8:3/0/terrains_peering_bit/right_side = 0
 8:3/0/terrains_peering_bit/bottom_side = 0
 10:3/0 = 0
-10:3/0/terrain_set = 0
-10:3/0/terrain = 0
 10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4, -8, -8, -4)
 6:6/0 = 0
 6:6/0/terrain_set = 0
@@ -82,17 +80,17 @@ texture = ExtResource("10_ubvmu")
 10:6/0 = 0
 10:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 4, -8, 8, -4)
 
-[sub_resource type="TileSet" id="TileSet_jyhfs"]
+[sub_resource type="TileSet" id="TileSet_lkc7u"]
 physics_layer_0/collision_layer = 2
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_ggrwn")
+sources/0 = SubResource("TileSetAtlasSource_8yo5y")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d1ilt"]
 
 [node name="Game" type="Node2D" unique_id=1063326671]
-script = ExtResource("1_qip8x")
+script = ExtResource("1_c6ek7")
 
 [node name="ScoreCanvas" type="CanvasLayer" parent="." unique_id=1844504890]
 
@@ -107,7 +105,7 @@ text = "Score: 0"
 position = Vector2(63, 41)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
-script = ExtResource("3_wcbaq")
+script = ExtResource("2_cgxr5")
 
 [node name="Background" type="Node" parent="." unique_id=1160022022]
 
@@ -121,7 +119,7 @@ repeat_times = 4
 [node name="Background" type="Sprite2D" parent="Background/Parallax Skyline" unique_id=536822848]
 texture_filter = 1
 position = Vector2(0, 50)
-texture = ExtResource("5_i5mec")
+texture = ExtResource("3_vosdc")
 
 [node name="Parallax Clouds" type="Parallax2D" parent="Background" unique_id=1469931002]
 modulate = Color(0.83889705, 0.83889705, 0.838897, 1)
@@ -146,7 +144,7 @@ repeat_times = 4
 [node name="Background" type="Sprite2D" parent="Background/Parallax Hills" unique_id=1515927362]
 texture_filter = 1
 position = Vector2(0, 50)
-texture = ExtResource("7_pibea")
+texture = ExtResource("5_3yiud")
 
 [node name="Parallax Coaster" type="Parallax2D" parent="Background" unique_id=1613399823]
 z_index = -2
@@ -158,7 +156,7 @@ repeat_times = 4
 [node name="Background" type="Sprite2D" parent="Background/Parallax Coaster" unique_id=467663368]
 texture_filter = 1
 position = Vector2(0, 50)
-texture = ExtResource("8_bolr6")
+texture = ExtResource("6_315rb")
 
 [node name="Parallax FG" type="Parallax2D" parent="Background" unique_id=806524513]
 z_index = -1
@@ -170,38 +168,18 @@ repeat_times = 4
 [node name="Background" type="Sprite2D" parent="Background/Parallax FG" unique_id=985199580]
 texture_filter = 1
 position = Vector2(0, 50)
-texture = ExtResource("9_hbyw3")
+texture = ExtResource("7_ark56")
 
-[node name="TrackLayer" type="TileMapLayer" parent="." unique_id=344472750]
-z_index = 100
-use_parent_material = true
-tile_map_data = PackedByteArray("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")
-tile_set = SubResource("TileSet_jyhfs")
-
-[node name="Player" parent="." unique_id=364403916 instance=ExtResource("11_6gnby")]
-position = Vector2(56, 40)
+[node name="Player" parent="." unique_id=364403916 instance=ExtResource("8_fgfq8")]
+position = Vector2(40, -40)
 floor_max_angle = 3.1415927
 
-[node name="Obstacle" parent="." unique_id=1888632384 instance=ExtResource("12_wrw41")]
-position = Vector2(169, 72)
-
-[node name="Obstacle2" parent="." unique_id=764009358 instance=ExtResource("12_wrw41")]
-position = Vector2(262, 104)
-
-[node name="Obstacle3" parent="." unique_id=1372068564 instance=ExtResource("12_wrw41")]
-position = Vector2(315, 8)
-
-[node name="Obstacle4" parent="." unique_id=199606067 instance=ExtResource("12_wrw41")]
-position = Vector2(520, 24)
-
-[node name="Obstacle5" parent="." unique_id=1018290037 instance=ExtResource("12_wrw41")]
-position = Vector2(520, 88)
-
-[node name="Obstacle6" parent="." unique_id=1512942435 instance=ExtResource("12_wrw41")]
-position = Vector2(616, 8)
-
-[node name="Obstacle7" parent="." unique_id=1617510656 instance=ExtResource("12_wrw41")]
-position = Vector2(725, -8)
+[node name="TrackLayer" type="TileMapLayer" parent="." unique_id=1010044100 node_paths=PackedStringArray("player")]
+z_index = 100
+use_parent_material = true
+tile_set = SubResource("TileSet_lkc7u")
+script = ExtResource("10_m8gdv")
+player = NodePath("../Player")
 
 [node name="KillPlane" type="Area2D" parent="." unique_id=1556265604]
 position = Vector2(0, 200)
