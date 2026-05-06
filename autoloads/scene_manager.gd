@@ -4,6 +4,7 @@ var scenes := {
 	"main_menu": preload("res://scenes/ui/main_menu.tscn"),
 	"main": preload("res://scenes/world/main.tscn"),
 	"end_screen": preload("res://scenes/ui/end_screen.tscn"),
+	"procedural_test": preload("res://scenes/world/procedural_generation.tscn")
 }
 
 func change_scene(scene_name: String) -> void:

@@ -6,7 +6,7 @@ const SWITCH_DURATION := 0.1
 
 ## Change this if a new track's height is taller
 const MAX_TRACK_HEIGHT := 20
-const ROTATION_SMOOTHING := PI * 2
+const ROTATION_SMOOTHING := PI * 3
 
 ## Change this to change how far up/down the cart can see
 var switch_track_dist := 100
@@ -34,7 +34,7 @@ var _switching_track := false
 func _ready() -> void:
 	up_raycast.target_position.y = -switch_track_dist
 	down_raycast.target_position.y = switch_track_dist
-	floor_raycast.target_position.y = $CollisionShape2D.shape.height / 2.0 + 2.0
+	floor_raycast.target_position.y = $CollisionShape2D.shape.height / 2.0 + 4.0
 	velocity = speed * forward_direction
 
 func _physics_process(delta: float) -> void:
@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		forward_direction = _get_forward_direction()
 		velocity = speed * forward_direction
-		velocity += -floor_normal * 10
+		velocity += -floor_normal * 20
 	
 	speed += speed * speed_gain * delta
 	speed = clamp(speed, MIN_SPEED, MAX_SPEED)

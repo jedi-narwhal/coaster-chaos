@@ -53,5 +53,15 @@ texture_normal = ExtResource("4_opfnp")
 texture_hover = ExtResource("8_trj04")
 texture_click_mask = ExtResource("5_cp0ys")
 
+[node name="TestButton" type="Button" parent="." unique_id=1771639973]
+layout_mode = 0
+offset_left = 210.00002
+offset_top = 286.00003
+offset_right = 425.0
+offset_bottom = 317.00003
+rotation = -0.06981317
+text = "TEST PROCEDURAL GENERATION"
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="TestButton" to="." method="_on_test_button_pressed"]
