@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://scenes/track/obstacle.gd" id="1_2p81s"]
 [ext_resource type="Texture2D" uid="uid://bs6c752gul8kq" path="res://assets/art/Obstacles/popcorn.png" id="1_15o2q"]
 [ext_resource type="Texture2D" uid="uid://bky4if4bl54o0" path="res://assets/art/Obstacles/beret-hat.png" id="3_0drx6"]
-[ext_resource type="Texture2D" uid="uid://cjvooit4vr1ui" path="res://assets/art/Obstacles/spiky-bubble.png" id="4_bcfqo"]
 [ext_resource type="Texture2D" uid="uid://ojo7jg1v1tn8" path="res://assets/art/Obstacles/tophat.png" id="5_u4pg3"]
 [ext_resource type="Texture2D" uid="uid://efe8ttmmmw04" path="res://assets/art/Obstacles/sunscreen.png" id="6_kxyuj"]
 
@@ -11,9 +10,10 @@
 size = Vector2(14, 14)
 
 [node name="Obstacle" type="Area2D" unique_id=1888632384]
-collision_layer = 2
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("1_2p81s")
-textures = Array[Texture2D]([ExtResource("1_15o2q"), ExtResource("3_0drx6"), ExtResource("4_bcfqo"), ExtResource("5_u4pg3"), ExtResource("6_kxyuj")])
+textures = Array[Texture2D]([ExtResource("1_15o2q"), ExtResource("3_0drx6"), ExtResource("5_u4pg3"), ExtResource("6_kxyuj")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=34021816]
 texture = ExtResource("1_15o2q")

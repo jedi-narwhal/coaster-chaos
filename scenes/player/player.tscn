@@ -34,6 +34,7 @@ radius = 4.0
 height = 16.0
 
 [node name="Player" type="CharacterBody2D" unique_id=364403916]
+collision_layer = 8
 collision_mask = 2
 floor_constant_speed = true
 floor_max_angle = 3.1415927
@@ -54,12 +55,12 @@ collision_mask = 2
 [node name="UpRayCast" type="RayCast2D" parent="." unique_id=488918619]
 position = Vector2(7, 0)
 target_position = Vector2(0, -100)
-collision_mask = 2
+collision_mask = 7
 
 [node name="DownRayCast" type="RayCast2D" parent="." unique_id=600352019]
 position = Vector2(7, 0)
 target_position = Vector2(0, 100)
-collision_mask = 2
+collision_mask = 7
 
 [node name="CartTrail" type="Node" parent="." unique_id=1753409741 node_paths=PackedStringArray("cart_sprite", "player")]
 script = ExtResource("3_6t5aa")
