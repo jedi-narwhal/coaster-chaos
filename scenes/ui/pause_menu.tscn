@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cx4fu4m0vdltm"]
+
+[ext_resource type="Texture2D" uid="uid://rqvf8ae5csm6" path="res://assets/art/pause_menu/UntitledArtwork2-export.png" id="1_6tw0m"]
+
+[node name="Pause menu" type="Control" unique_id=59886769]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1141254259]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 636.0
+offset_bottom = 360.0
+texture = ExtResource("1_6tw0m")
+
+[node name="e stop" type="TextureButton" parent="TextureRect" unique_id=1014157478]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.44300002
+anchor_top = 0.629
+anchor_right = 0.44300002
+anchor_bottom = 0.629
+offset_left = -283.52002
+offset_top = -226.44
+offset_right = 356.47998
+offset_bottom = 133.56
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect" unique_id=528527203]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
