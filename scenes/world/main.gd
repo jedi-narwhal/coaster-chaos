@@ -2,7 +2,8 @@ extends Node2D
 
 
 @onready var score_label = $ScoreCanvas/ScoreLabel
-
+@onready var pause_menu= $"Pause menu"
+var paused= false
 
 func _ready() -> void:
 	AudioManager.change_music("game")
@@ -14,7 +15,24 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("reset"):
 		SceneManager.change_scene("end_screen")
-
+	
+	if Input.is_action_pressed("pause"):
+		print("The pause button was pressed!")
+		pauseMenu()
 
 func _on_score_changed(score: int) -> void:
 	score_label.text = "Score: " + str(score)
+	
+func pauseMenu():
+	print("running pause")
+	if paused:
+		pause_menu.hide()
+		Engine.time_scale = 1
+	else:
+		pause_menu.show()
+		Engine.time_scale = 0
+		
+	paused= !paused
+
+
+	

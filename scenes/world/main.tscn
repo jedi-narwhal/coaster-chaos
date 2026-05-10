@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c5m0ssc47o67" path="res://assets/art/Background/BG-FG.png" id="9_hbyw3"]
 [ext_resource type="Texture2D" uid="uid://b31iib1r2qves" path="res://assets/art/Track/track-spritesheet.png" id="10_ubvmu"]
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="11_6gnby"]
+[ext_resource type="PackedScene" uid="uid://cx4fu4m0vdltm" path="res://scenes/ui/pause_menu.tscn" id="11_85j56"]
 [ext_resource type="PackedScene" uid="uid://bicxc8d552e64" path="res://scenes/obstacles/obstacle.tscn" id="12_wrw41"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
@@ -62,6 +63,12 @@ sources/0 = SubResource("TileSetAtlasSource_21xkr")
 
 [node name="Game" type="Node2D" unique_id=1063326671]
 script = ExtResource("1_qip8x")
+
+[node name="Pause menu" parent="." unique_id=59886769 instance=ExtResource("11_85j56")]
+offset_left = -26.0
+offset_top = 287.0
+offset_right = -26.0
+offset_bottom = 287.0
 
 [node name="ScoreCanvas" type="CanvasLayer" parent="." unique_id=1844504890]
 
