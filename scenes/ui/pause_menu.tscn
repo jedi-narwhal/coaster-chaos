@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cx4fu4m0vdltm"]
 
 [ext_resource type="Texture2D" uid="uid://rqvf8ae5csm6" path="res://assets/art/pause_menu/UntitledArtwork2-export.png" id="1_6tw0m"]
+[ext_resource type="Texture2D" uid="uid://0curasn0h02e" path="res://assets/art/pause_menu/redbutton.png" id="2_0lmf7"]
 
 [node name="Pause menu" type="Control" unique_id=59886769]
 layout_mode = 3
@@ -17,6 +18,15 @@ offset_right = 636.0
 offset_bottom = 360.0
 texture = ExtResource("1_6tw0m")
 
+[node name="Label" type="Label" parent="TextureRect" unique_id=1627226361]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 19.0
+offset_right = 415.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 17
+text = "Coaster Chaos Control Panel"
+
 [node name="e stop" type="TextureButton" parent="TextureRect" unique_id=1014157478]
 layout_mode = 1
 anchors_preset = -1
@@ -24,12 +34,45 @@ anchor_left = 0.44300002
 anchor_top = 0.629
 anchor_right = 0.44300002
 anchor_bottom = 0.629
-offset_left = -283.52002
-offset_top = -226.44
-offset_right = 356.47998
-offset_bottom = 133.56
+offset_left = -92.52002
+offset_top = -11.440002
+offset_right = -11.52002
+offset_bottom = 61.559998
+texture_normal = ExtResource("2_0lmf7")
+texture_pressed = ExtResource("2_0lmf7")
+texture_hover = ExtResource("2_0lmf7")
+texture_disabled = ExtResource("2_0lmf7")
+texture_focused = ExtResource("2_0lmf7")
 
-[node name="TextureButton" type="TextureButton" parent="TextureRect" unique_id=528527203]
+[node name="resume" type="TextureButton" parent="TextureRect" unique_id=1575038712]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.44300002
+anchor_top = 0.629
+anchor_right = 0.44300002
+anchor_bottom = 0.629
+offset_left = 15.47998
+offset_top = -10.440002
+offset_right = 96.47998
+offset_bottom = 62.559998
+texture_normal = ExtResource("2_0lmf7")
+texture_pressed = ExtResource("2_0lmf7")
+texture_hover = ExtResource("2_0lmf7")
+texture_disabled = ExtResource("2_0lmf7")
+texture_focused = ExtResource("2_0lmf7")
+
+[node name="Label2" type="Label" parent="TextureRect" unique_id=824300383]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 208.0
+offset_top = 308.0
+offset_right = 258.0
+offset_bottom = 335.0
+text = "E Stop"
+
+[node name="Label3" type="Label" parent="TextureRect" unique_id=1070759993]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 306.0
+offset_right = 376.0
+offset_bottom = 333.0
+text = "Resume"
