@@ -72,7 +72,7 @@ text = "E Stop"
 [node name="Label3" type="Label" parent="TextureRect" unique_id=1070759993]
 layout_mode = 0
 offset_left = 314.0
-offset_top = 306.0
+offset_top = 308.0
 offset_right = 376.0
-offset_bottom = 333.0
+offset_bottom = 335.0
 text = "Resume"
