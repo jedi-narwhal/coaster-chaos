@@ -92,7 +92,6 @@ func _input(event: InputEvent) -> void:
 			var expected_dir := _get_expected_forward_direction(raw_pos)
 			if expected_dir != Vector2.INF:
 				forward_direction = expected_dir
-			print(expected_dir)
 			var target_pos := _get_expected_track_position(raw_pos)
 			if target_pos != Vector2.INF:
 				_switch_to_track(target_pos, up_raycast.get_collider())
