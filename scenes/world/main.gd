@@ -27,7 +27,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		get_tree().paused = true
 		world.reparent(pause_viewport)
-		$UI/PauseMenu/TextureRect/SubViewportContainer/SubViewport/Camera2D.transform = $Camera2D.transform
+		$UI/PauseMenu/TextureRect/SubViewportContainer/SubViewport/Camera2D.transform = player.get_node("Camera2D").transform
 		pause_menu.visible = true
 
 

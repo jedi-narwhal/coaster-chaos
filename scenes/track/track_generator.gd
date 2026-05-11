@@ -7,12 +7,20 @@ enum Slope {
 	UP = -1,
 }
 
+enum TrackObject {
+	STATIC,
+	MOVING,
+	BOOST,
+}
+
 const MAX_DIST_APART = 6
 const MAX_GENERATIONS = 100
 const MIN_Y = -28
 const MAX_Y = 8
 
 @export var obstacle_scene: PackedScene
+@export var moving_obstacles: Array[PackedScene]
+@export var boost_scene: PackedScene
 @export var obstacle_container: Node2D
 @export var player: CharacterBody2D
 @export var terrain_set: int = 0
@@ -25,6 +33,8 @@ var VALID_SLOPES: Dictionary[int, Array] = {
 }
 
 var obstacle_chance: float = 0.10
+var boost_chance: float = 0.05
+var moving_obstacle_chance: float = 0.05
 
 var generate_amount: int = 40
 var clean_distance: int = 40
@@ -57,7 +67,6 @@ func generate_tiles() -> void:
 		if obstacle_cooldown > 0:
 			obstacle_cooldown -= 1
 		for i in get_child_count():
-			var track := get_child(i) as TileMapLayer
 			var valid_slopes: Array = VALID_SLOPES[last_slope[i]].duplicate()
 
 			# Clamp between Y bounds
@@ -104,14 +113,31 @@ func generate_tiles() -> void:
 		furthest_x[i] += generate_amount
 
 
-## Might spawn an obstacle.
+## Might spawn a track object.
 ## If this successfully spawns an obstacle, returns [code]true[/code].
 func spawn_obstacle(track_idx: int, x: int, y: int) -> bool:
-	if randf() > obstacle_chance:
-		return false
+	var weights = PackedFloat32Array([
+		obstacle_chance, 
+		moving_obstacle_chance,
+		boost_chance,
+	])
+	var total_weight: float = 0.0
+	for weight in weights:
+		total_weight += weight
+	weights.append(1.0 - total_weight)
+	var idx = RandomNumberGenerator.new().rand_weighted(weights)
+	var obstacle: Node2D
+	match idx:
+		TrackObject.STATIC:
+			obstacle = obstacle_scene.instantiate()
+		TrackObject.MOVING:
+			obstacle = moving_obstacles.pick_random().instantiate()
+		TrackObject.BOOST:
+			obstacle = boost_scene.instantiate()
+		_:
+			return false
 
 	var track: TileMapLayer = get_child(track_idx)
-	var obstacle: Node2D = obstacle_scene.instantiate()
 
 	var local_pos: Vector2 = track.map_to_local(Vector2i(x, y))
 	var world_pos: Vector2 = track.to_global(local_pos)

@@ -3,17 +3,19 @@
 [ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/world/main.gd" id="1_w85pj"]
 [ext_resource type="FontFile" uid="uid://c8kvagd03kcd8" path="res://assets/fonts/georgia.ttf" id="2_gq604"]
 [ext_resource type="PackedScene" uid="uid://cx4fu4m0vdltm" path="res://scenes/ui/pause_menu.tscn" id="3_w2ny7"]
-[ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scenes/player/player_camera.gd" id="4_45tw2"]
 [ext_resource type="Texture2D" uid="uid://c7aw3qwgs3wxe" path="res://assets/art/Background/BG-Skyline.png" id="5_0muk7"]
 [ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://assets/art/Background/obstacle-decor-spritesheet.png" id="6_a0sbk"]
 [ext_resource type="Texture2D" uid="uid://e124p8gqxyme" path="res://assets/art/Background/BG-Hills.png" id="7_s0vsq"]
 [ext_resource type="Texture2D" uid="uid://bhvwbd6ols8jn" path="res://assets/art/Background/BG-Coaster.png" id="8_jl075"]
 [ext_resource type="Texture2D" uid="uid://c5m0ssc47o67" path="res://assets/art/Background/BG-FG.png" id="9_tl8ai"]
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="10_yu7nl"]
-[ext_resource type="Script" uid="uid://br46ytaa6frly" path="res://scenes/track/track_layer.gd" id="11_of1br"]
+[ext_resource type="Script" uid="uid://br46ytaa6frly" path="res://scenes/track/track_generator.gd" id="11_of1br"]
 [ext_resource type="PackedScene" uid="uid://bicxc8d552e64" path="res://scenes/track/obstacle.tscn" id="12_dsqry"]
 [ext_resource type="Texture2D" uid="uid://clixmh5cmev7k" path="res://assets/art/Track/track-spritesheet.png" id="13_8ecey"]
+[ext_resource type="PackedScene" uid="uid://dafks0mahk7sl" path="res://scenes/track/spiky-bubble.tscn" id="13_45tw2"]
+[ext_resource type="PackedScene" uid="uid://b52pkvnlsx20h" path="res://scenes/track/balloon.tscn" id="14_0muk7"]
 [ext_resource type="PackedScene" uid="uid://dfwapfd326y5c" path="res://scenes/launch_operators/launch_operators.tscn" id="14_ahp0x"]
+[ext_resource type="PackedScene" uid="uid://bafhjmtv2l5nm" path="res://scenes/track/firework_boost.tscn" id="15_a0sbk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c6ek7"]
 texture = ExtResource("6_a0sbk")
@@ -270,12 +272,6 @@ horizontal_alignment = 1
 [node name="PauseMenu" parent="UI" unique_id=59886769 instance=ExtResource("3_w2ny7")]
 visible = false
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=586235432]
-position = Vector2(63, 41)
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-script = ExtResource("4_45tw2")
-
 [node name="World" type="Node" parent="." unique_id=1806065718]
 
 [node name="Background" type="Node2D" parent="World" unique_id=390206351]
@@ -361,6 +357,8 @@ position = Vector2(-75, 72)
 [node name="Tracks" type="Node2D" parent="World" unique_id=1647765800 node_paths=PackedStringArray("obstacle_container", "player")]
 script = ExtResource("11_of1br")
 obstacle_scene = ExtResource("12_dsqry")
+moving_obstacles = Array[PackedScene]([ExtResource("13_45tw2"), ExtResource("14_0muk7")])
+boost_scene = ExtResource("15_a0sbk")
 obstacle_container = NodePath("../Obstacles")
 player = NodePath("../Player")
 

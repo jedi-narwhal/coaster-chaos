@@ -17,6 +17,8 @@ func _ready() -> void:
 ## Removes 1 health when colliding with [param body], 
 ## which should only be the Player CharacterBody2D.
 func _on_body_entered(body: Node2D) -> void:
+	if body.name != "Player":
+		return
 	body.remove_health()
 	$CollisionShape2D.set_deferred("disabled", true)
 	body.speed -= body.speed * speed_reduction
