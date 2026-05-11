@@ -225,7 +225,7 @@ offset_bottom = 132.0
 color = Color(0.36078432, 0.3647059, 0.4392157, 1)
 
 [node name="LaunchOperators" parent="." unique_id=227399956 instance=ExtResource("10_oaya2")]
-position = Vector2(64, 0)
+position = Vector2(74, 24)
 
 [node name="TrackLayer" type="TileMapLayer" parent="." unique_id=344472750]
 z_index = 100

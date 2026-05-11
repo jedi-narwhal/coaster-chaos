@@ -1,7 +1,8 @@
 [gd_scene format=4 uid="uid://b5oxsk0umuam8"]
 
 [ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/world/main.gd" id="1_cjb1j"]
-[ext_resource type="FontFile" uid="uid://b6xuicnun3nrn" path="res://assets/fonts/georgia.ttf" id="2_r8xii"]
+[ext_resource type="PackedScene" uid="uid://dfwapfd326y5c" path="res://scenes/launch_operators/launch_operators.tscn" id="2_2dbd5"]
+[ext_resource type="FontFile" uid="uid://c8kvagd03kcd8" path="res://assets/fonts/georgia.ttf" id="2_r8xii"]
 [ext_resource type="PackedScene" uid="uid://cx4fu4m0vdltm" path="res://scenes/ui/pause_menu.tscn" id="3_8goh5"]
 [ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scenes/player/player_camera.gd" id="3_8yka7"]
 [ext_resource type="Texture2D" uid="uid://c7aw3qwgs3wxe" path="res://assets/art/Background/BG-Skyline.png" id="4_caigt"]
@@ -9,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://e124p8gqxyme" path="res://assets/art/Background/BG-Hills.png" id="6_u32t8"]
 [ext_resource type="Texture2D" uid="uid://bhvwbd6ols8jn" path="res://assets/art/Background/BG-Coaster.png" id="7_ju2lw"]
 [ext_resource type="Texture2D" uid="uid://c5m0ssc47o67" path="res://assets/art/Background/BG-FG.png" id="8_e3lbq"]
-[ext_resource type="Texture2D" uid="uid://b31iib1r2qves" path="res://assets/art/Track/track-spritesheet.png" id="9_uwxyk"]
+[ext_resource type="Texture2D" uid="uid://clixmh5cmev7k" path="res://assets/art/Track/track-spritesheet.png" id="9_uwxyk"]
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="10_vvqor"]
 [ext_resource type="PackedScene" uid="uid://bicxc8d552e64" path="res://scenes/track/obstacle.tscn" id="11_yap5e"]
 
@@ -243,6 +244,8 @@ sources/1 = SubResource("TileSetScenesCollectionSource_71jto")
 
 [node name="Game" type="Node2D" unique_id=1063326671]
 script = ExtResource("1_cjb1j")
+
+[node name="LaunchOperators" parent="." unique_id=227399956 instance=ExtResource("2_2dbd5")]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1476040082]
 
