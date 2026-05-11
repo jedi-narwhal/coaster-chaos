@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum TrackLayer { ONE = 1, TWO = 2, THREE = 3 }
 
 const MIN_SPEED := 25.0
-const MAX_SPEED := 100.0
+const MAX_SPEED := 300.0
 const SWITCH_DURATION := 0.1
 
 ## Change this if a new track's height is taller

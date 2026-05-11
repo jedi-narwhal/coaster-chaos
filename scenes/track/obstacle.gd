@@ -3,7 +3,7 @@ extends Area2D
 class_name Obstacle
 
 @export var textures: Array[Texture2D]
-#@export var speed_reduction := 0.5
+@export var speed_reduction := 0.25
 @export var score_decrement := 10
 
 @onready var sprite = $Sprite2D
@@ -19,7 +19,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	body.remove_health()
 	$CollisionShape2D.set_deferred("disabled", true)
-	#body.speed -= body.speed * speed_reduction
+	body.speed -= body.speed * speed_reduction
 	ScoreManager.mod_score(-1 * score_decrement)
 	
 	var tween = create_tween()
