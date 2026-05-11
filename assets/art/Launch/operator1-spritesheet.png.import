@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b31iib1r2qves"
-path="res://.godot/imported/track-spritesheet.png-5673572b56247e77cb9db396e15ac5c4.ctex"
+uid="uid://cucctatje61fk"
+path="res://.godot/imported/operator1-spritesheet.png-a4730f47454185acd8633d39a14071f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/Track/track-spritesheet.png"
-dest_files=["res://.godot/imported/track-spritesheet.png-5673572b56247e77cb9db396e15ac5c4.ctex"]
+source_file="res://assets/art/Launch/operator1-spritesheet.png"
+dest_files=["res://.godot/imported/operator1-spritesheet.png-a4730f47454185acd8633d39a14071f5.ctex"]
 
 [params]
 

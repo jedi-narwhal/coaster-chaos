@@ -17,7 +17,8 @@ var forward_direction := Vector2.RIGHT
 var floor_normal := Vector2.UP
 
 var player_health := 3
-var speed := 50.0
+var speed := 1.0
+var start_speed := 50.0
 var speed_gain := 0.03
 
 @onready var up_raycast: RayCast2D = $UpRayCast
@@ -32,16 +33,37 @@ var _switching_track := false
 
 signal health_lost
 
+var launch := false
+@export var op1: AnimatedSprite2D
+@export var op2: AnimatedSprite2D
+@export var op3: AnimatedSprite2D
+
+func _launch() -> void:
+	launch = true
+	op1.play("raise1")
+	await op1.animation_finished
+	op2.play("raise2")
+	await op2.animation_finished
+	op3.play("raise3")
+	await op3.animation_finished
+	
+	speed = start_speed
+	launch = false
+
 func _ready() -> void:
 	up_raycast.target_position.y = -switch_track_dist
 	down_raycast.target_position.y = switch_track_dist
 	floor_raycast.target_position.y = $CollisionShape2D.shape.height / 2.0 + 2.0
 	velocity = speed * forward_direction
+	_launch()
 
 func _physics_process(delta: float) -> void:
 	# Rolling animation
 	if velocity.length() > 0:
 		$AnimatedSprite2D.play("rolling")
+	
+	if launch:
+		return
 	
 	# Ignore physics if currently tweening
 	if _switching_track:
