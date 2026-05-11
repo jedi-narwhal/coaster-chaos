@@ -4,14 +4,18 @@ extends Node2D
 @onready var score_label = $UI/ScoreLabel
 @onready var pause_menu = $UI/PauseMenu
 @onready var controls_container = $UI/ControlsContainer
+@onready var launch_operators = $LaunchOperators
+@onready var player = $Player
 
 func _ready() -> void:
 	AudioManager.change_music("game")
 	ScoreManager.reset_score()
 	ScoreManager.score_changed.connect(_on_score_changed)
 	pause_menu.game_resumed.connect(_on_game_resumed)
-	
 	fade_controls_text()
+	player.op1 = launch_operators.get_node("Operator1")
+	player.op2 = launch_operators.get_node("Operator2")
+	player.op3 = launch_operators.get_node("Operator3")
 
 
 func _input(event: InputEvent) -> void:

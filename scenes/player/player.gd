@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+enum TrackLayer { ONE = 1, TWO = 2, THREE = 3 }
+
 const MIN_SPEED := 25.0
 const MAX_SPEED := 100.0
 const SWITCH_DURATION := 0.1
@@ -7,19 +9,8 @@ const SWITCH_DURATION := 0.1
 ## Change this if a new track's height is taller
 const MAX_TRACK_HEIGHT := 16
 const ROTATION_SMOOTHING := PI * 3
-
-enum TrackLayer { ONE=0, TWO=1, THREE=2 }
-
-const TRACK_LAYERS = [1, 2, 3]
-
-@export var current_track_layer: int = TrackLayer.TWO
-
-@onready var up_raycast: RayCast2D = $UpRayCast
-@onready var down_raycast: RayCast2D = $DownRayCast
-@onready var floor_raycast: RayCast2D = $CollisionShape2D/FloorRayCast
-@onready var jump_up: AudioStreamPlayer = $JumpUpSound
-@onready var jump_down: AudioStreamPlayer = $JumpDownSound
-@onready var obstacle_hit: AudioStreamPlayer = $ObstacleHitSound
+const START_SPEED = 50.0
+const TRACK_LAYERS = [TrackLayer.ONE, TrackLayer.TWO, TrackLayer.THREE]
 
 ## Change this to change how far up/down the cart can see
 var switch_track_dist := 100
@@ -30,25 +21,44 @@ var forward_direction := Vector2.RIGHT
 var floor_normal := Vector2.UP
 
 var player_health := 3
-var speed := 50.0
+var speed := 1.0
 var speed_gain := 0.03
 
 var on_track := false
 var _switching_track := false
+var launch := false
 
+# These are set in-game
+@export var op1: AnimatedSprite2D
+@export var op2: AnimatedSprite2D
+@export var op3: AnimatedSprite2D
+
+@export var current_track_layer: int = TrackLayer.TWO
+@onready var up_raycast: RayCast2D = $UpRayCast
+@onready var down_raycast: RayCast2D = $DownRayCast
+@onready var floor_raycast: RayCast2D = $CollisionShape2D/FloorRayCast
+@onready var jump_up: AudioStreamPlayer = $JumpUpSound
+@onready var jump_down: AudioStreamPlayer = $JumpDownSound
+@onready var obstacle_hit: AudioStreamPlayer = $ObstacleHitSound
 
 func _ready() -> void:
 	up_raycast.target_position.y = -switch_track_dist
 	down_raycast.target_position.y = switch_track_dist
 	floor_raycast.target_position.y = $CollisionShape2D.shape.height / 2.0 + 4.0
 	velocity = speed * forward_direction
+	await get_tree().physics_frame
+	print(op1)
+	_launch()
 
 
 func _physics_process(delta: float) -> void:
 	# Rolling animation
 	if velocity.length() > 0:
 		$AnimatedSprite2D.play("rolling")
-
+	
+	if launch:
+		return
+	
 	# Ignore physics if currently tweening
 	if _switching_track:
 		return
@@ -110,6 +120,20 @@ func _input(event: InputEvent) -> void:
 				if target_pos != Vector2.INF:
 					_switch_to_track(target_pos, down_raycast.get_collider())
 					_force_rotate_children()
+
+
+func _launch() -> void:
+	launch = true
+	if op1 and op2 and op3:
+		op1.play("raise1")
+		await op1.animation_finished
+		op2.play("raise2")
+		await op2.animation_finished
+		op3.play("raise3")
+		await op3.animation_finished
+	
+	speed = START_SPEED
+	launch = false
 
 
 ## Rotates the floor normal and angle of the sprite and collision.
@@ -180,7 +204,6 @@ func _get_expected_track_position(raw_pos: Vector2) -> Vector2:
 
 func _get_expected_forward_direction(pos: Vector2) -> Vector2:
 	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
-	var surface_dir: Vector2 = -floor_normal
 	var query := PhysicsRayQueryParameters2D.create(
 		pos - Vector2(0, MAX_TRACK_HEIGHT),
 		pos + Vector2(0, MAX_TRACK_HEIGHT)

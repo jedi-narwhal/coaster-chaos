@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://2d2h32gaogyk" path="res://assets/art/Player/cart-spritesheet.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bn66r6fkcgs2d" path="res://scenes/player/player.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://bkbbgns6v3pqy" path="res://scenes/player/cart_trail.gd" id="3_6t5aa"]
-[ext_resource type="AudioStream" uid="uid://1nycnoe2kq14" path="res://assets/sfx/JumpUp.mp3" id="4_p47bc"]
-[ext_resource type="AudioStream" uid="uid://p7ih64pr5pvr" path="res://assets/sfx/JumpDown.mp3" id="5_75vfm"]
-[ext_resource type="AudioStream" uid="uid://bykxgagf4sxsm" path="res://assets/sfx/ObstacleHit.mp3" id="6_75vfm"]
+[ext_resource type="AudioStream" uid="uid://fr0wf82iorjl" path="res://assets/sfx/JumpUp.mp3" id="4_p47bc"]
+[ext_resource type="AudioStream" uid="uid://75ssw67msg8u" path="res://assets/sfx/JumpDown.mp3" id="5_75vfm"]
+[ext_resource type="AudioStream" uid="uid://do2v8e35fd1wk" path="res://assets/sfx/ObstacleHit.mp3" id="6_75vfm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_4flbx")
