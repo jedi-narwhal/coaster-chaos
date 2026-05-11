@@ -48,12 +48,14 @@ func _physics_process(_delta: float) -> void:
 
 func generate_tiles() -> void:
 	var cells: Array[Array] = [[], [], []]
+	var obstacle_cooldown: int = 2
 
 	for i in get_child_count():
 		cells[i].append(Vector2i(furthest_x[i] - 1, furthest_y[i]))
 
 	for x in range(furthest_x[0], furthest_x[0] + generate_amount):
-		var obstacle_spawned: bool = false
+		if obstacle_cooldown > 0:
+			obstacle_cooldown -= 1
 		for i in get_child_count():
 			var track := get_child(i) as TileMapLayer
 			var valid_slopes: Array = VALID_SLOPES[last_slope[i]].duplicate()
@@ -89,8 +91,9 @@ func generate_tiles() -> void:
 				cells[i].append(Vector2i(x, furthest_y[i]))
 			cells[i].append(Vector2i(x, y))
 			
-			if slope == Slope.FLAT and not obstacle_spawned:
-				obstacle_spawned = spawn_obstacle(i, x, y)
+			if slope == Slope.FLAT and obstacle_cooldown == 0:
+				if spawn_obstacle(i, x, y):
+					obstacle_cooldown = 2
 			
 			furthest_y[i] = y
 			last_slope[i] = slope
@@ -101,6 +104,8 @@ func generate_tiles() -> void:
 		furthest_x[i] += generate_amount
 
 
+## Might spawn an obstacle.
+## If this successfully spawns an obstacle, returns [code]true[/code].
 func spawn_obstacle(track_idx: int, x: int, y: int) -> bool:
 	if randf() > obstacle_chance:
 		return false
