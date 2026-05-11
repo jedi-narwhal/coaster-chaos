@@ -21,8 +21,20 @@ func add_carts() -> void:
 		trail_sprite.top_level = true
 		add_child(trail_sprite)
 		trail_sprites.append(trail_sprite)
+		
+		trail_sprites[i].global_position = (cart_sprite.global_position
+											- Vector2(25 * (i + 1), 0))
+		trail_sprites[i].global_rotation = cart_sprite.global_rotation
+		trail_sprites[i].play()
 
 func _physics_process(_delta: float) -> void:
+	if player.launch:
+		return
+	_add_cart_data()
+	_place_carts()
+
+
+func _add_cart_data() -> void:
 	cart_spacing = 1500 / player.speed
 	# Add information about the front-most sprite into the history
 	# Index 0 is the current cart, last index gets deleted
@@ -36,13 +48,21 @@ func _physics_process(_delta: float) -> void:
 	if sprite_history.size() > history_size:
 		sprite_history.pop_back()
 
+
+func _place_carts() -> void:
 	# Trailing carts copy data from the history at a delay
 	for i in trail_sprites.size():
-		var delay: int = min((i + 1) * cart_spacing, sprite_history.size()-1)
-		var data: Dictionary = sprite_history[delay]
-		trail_sprites[i].global_position = data["position"]
-		trail_sprites[i].global_rotation = data["rotation"]
-		trail_sprites[i].frame = data["frame"]
+		var delay: int = (i + 1) * cart_spacing
+		if delay < sprite_history.size():
+			var data: Dictionary = sprite_history[delay]
+			trail_sprites[i].global_position = data["position"]
+			trail_sprites[i].global_rotation = data["rotation"]
+			trail_sprites[i].frame = data["frame"]
+		else:
+			trail_sprites[i].global_position = (cart_sprite.global_position
+												- Vector2(25 * (i + 1), 0))
+			trail_sprites[i].global_rotation = cart_sprite.global_rotation
+			trail_sprites[i].frame = cart_sprite.frame
 
 
 func on_player_health_lost() -> void:
