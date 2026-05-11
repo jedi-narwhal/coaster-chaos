@@ -9,6 +9,8 @@ func _ready() -> void:
 	ScoreManager.reset_score()
 	ScoreManager.score_changed.connect(_on_score_changed)
 	pause_menu.game_resumed.connect(_on_game_resumed)
+	
+	fade_controls_text()
 
 
 func _input(event: InputEvent) -> void:
@@ -26,3 +28,9 @@ func _on_game_resumed() -> void:
 
 func _on_score_changed(score: int) -> void:
 	score_label.text = "Score: " + str(score)
+
+
+func fade_controls_text() -> void:
+	await get_tree().create_timer(5.0).timeout
+	var tween = get_tree().create_tween()
+	tween.tween_property($ControlsCanvas/Label, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1)

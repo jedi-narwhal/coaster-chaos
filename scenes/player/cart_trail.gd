@@ -45,7 +45,7 @@ func _physics_process(_delta: float) -> void:
 		trail_sprites[i].frame = data["frame"]
 
 
-func _on_player_health_lost() -> void:
+func on_player_health_lost() -> void:
 	if trail_sprites.is_empty():
 		return
 	
@@ -88,7 +88,6 @@ func _on_player_health_lost() -> void:
 	
 	cart_sprite.global_rotation = target_rotation
 	player.get_node("CollisionShape2D").global_rotation = target_rotation
-	player.get_node("FloorRayCast").global_rotation = target_rotation
 	
 	trail_sprites.pop_front().queue_free()
 	

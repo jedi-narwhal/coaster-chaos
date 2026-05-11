@@ -11,3 +11,7 @@ func _on_play_button_pressed() -> void:
 
 func _on_options_button_pressed() -> void:
 	pass
+
+
+func _on_test_button_pressed() -> void:
+	SceneManager.change_scene("procedural_test")
