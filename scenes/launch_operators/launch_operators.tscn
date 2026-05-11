@@ -235,16 +235,15 @@ animations = [{
 [node name="LaunchOperators" type="Node2D" unique_id=227399956]
 
 [node name="Operator1" type="AnimatedSprite2D" parent="." unique_id=889042882]
-position = Vector2(8, 24)
 sprite_frames = SubResource("SpriteFrames_4f88u")
 animation = &"raise1"
 
 [node name="Operator2" type="AnimatedSprite2D" parent="." unique_id=1228165882]
-position = Vector2(23, 24)
+position = Vector2(15, 0)
 sprite_frames = SubResource("SpriteFrames_4f88u")
 animation = &"raise2"
 
 [node name="Operator3" type="AnimatedSprite2D" parent="." unique_id=57717046]
-position = Vector2(39, 24)
+position = Vector2(30, 0)
 sprite_frames = SubResource("SpriteFrames_4f88u")
 animation = &"raise3"
