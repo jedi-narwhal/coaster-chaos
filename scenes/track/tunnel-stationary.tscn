@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c1e4ochjd0pa6"]
+
+[ext_resource type="Texture2D" uid="uid://b1pgntagroukm" path="res://assets/art/Track/tunnel.png" id="1_jd7fd"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=2046956360]
+light_mask = 2
+texture = ExtResource("1_jd7fd")
+flip_h = true

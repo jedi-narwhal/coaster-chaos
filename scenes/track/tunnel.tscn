@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dceibt6chajhq"]
+
+[ext_resource type="Texture2D" uid="uid://35jdeomuel73" path="res://assets/art/Track/tunnel-opening.png" id="1_03ibc"]
+[ext_resource type="Script" uid="uid://3418xr7toort" path="res://scenes/track/tunnel.gd" id="1_svghc"]
+[ext_resource type="Texture2D" uid="uid://dg0ykq14jga2g" path="res://assets/art/Track/tunnel-shell.png" id="2_svghc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m563l"]
+size = Vector2(36, 42)
+
+[node name="Area2D" type="Area2D" unique_id=155481577]
+position = Vector2(16, 5)
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_svghc")
+next_scene_path = "res://scenes/world/main.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=451400915]
+texture = ExtResource("1_03ibc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=779258910]
+position = Vector2(3, 27)
+shape = SubResource("RectangleShape2D_m563l")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=582128301]
+texture = ExtResource("2_svghc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
