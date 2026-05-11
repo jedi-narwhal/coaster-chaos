@@ -8,9 +8,11 @@ const SWITCH_DURATION := 0.1
 const MAX_TRACK_HEIGHT := 16
 const ROTATION_SMOOTHING := PI * 3
 
+enum TrackLayer { ONE=0, TWO=1, THREE=2 }
+
 const TRACK_LAYERS = [1, 2, 3]
 
-@export var current_track_layer: int = 2
+@export var current_track_layer: int = TrackLayer.TWO
 
 @onready var up_raycast: RayCast2D = $UpRayCast
 @onready var down_raycast: RayCast2D = $DownRayCast
@@ -77,9 +79,38 @@ func _physics_process(delta: float) -> void:
 	speed = clamp(speed, MIN_SPEED, MAX_SPEED)
 
 	_rotate_children(delta)
-	_handle_jumps()
 	move_and_slide()
 	queue_redraw()
+
+
+func _input(event: InputEvent) -> void:
+	# Jump to higher track
+	if event.is_action_pressed("up") and up_raycast.is_colliding():
+		var raw_pos := _get_raw_track_position(up_raycast)
+		if raw_pos != Vector2.INF:
+			jump_up.play()
+			var expected_dir := _get_expected_forward_direction(raw_pos)
+			if expected_dir != Vector2.INF:
+				forward_direction = expected_dir
+			print(expected_dir)
+			var target_pos := _get_expected_track_position(raw_pos)
+			if target_pos != Vector2.INF:
+				_switch_to_track(target_pos, up_raycast.get_collider())
+				_force_rotate_children()
+
+	# Drop to lower track
+	if event.is_action_pressed("down") and down_raycast.is_colliding():
+		if down_raycast.get_collision_normal().y < 0:
+			var raw_pos := _get_raw_track_position(down_raycast)
+			if raw_pos != Vector2.INF:
+				jump_down.play()
+				var expected_dir := _get_expected_forward_direction(raw_pos)
+				if expected_dir != Vector2.INF:
+					forward_direction = expected_dir
+				var target_pos := _get_expected_track_position(raw_pos)
+				if target_pos != Vector2.INF:
+					_switch_to_track(target_pos, down_raycast.get_collider())
+					_force_rotate_children()
 
 
 ## Rotates the floor normal and angle of the sprite and collision.
@@ -103,35 +134,6 @@ func _force_rotate_children() -> void:
 	$CollisionShape2D.global_rotation = target_angle
 
 
-func _handle_jumps() -> void:
-	# Jump to higher track
-	if Input.is_action_just_pressed("up") and up_raycast.is_colliding():
-		var raw_pos := _get_raw_track_position(up_raycast)
-		if raw_pos != Vector2.INF:
-			jump_up.play()
-			var expected_dir := _get_expected_forward_direction(raw_pos)
-			if expected_dir != Vector2.INF:
-				forward_direction = expected_dir
-			var target_pos := _get_expected_track_position(raw_pos)
-			if target_pos != Vector2.INF:
-				_switch_to_track(target_pos, up_raycast.get_collider())
-				_force_rotate_children()
-
-	# Drop to lower track
-	if Input.is_action_just_pressed("down") and down_raycast.is_colliding():
-		if down_raycast.get_collision_normal().y < 0:
-			var raw_pos := _get_raw_track_position(down_raycast)
-			if raw_pos != Vector2.INF:
-				jump_down.play()
-				var expected_dir := _get_expected_forward_direction(raw_pos)
-				if expected_dir != Vector2.INF:
-					forward_direction = expected_dir
-				var target_pos := _get_expected_track_position(raw_pos)
-				if target_pos != Vector2.INF:
-					_switch_to_track(target_pos, down_raycast.get_collider())
-					_force_rotate_children()
-
-
 func _get_raw_track_position(raycast: RayCast2D) -> Vector2:
 	var collision_point: Vector2 = raycast.get_collision_point()
 	var collision_normal: Vector2 = raycast.get_collision_normal()
@@ -148,7 +150,6 @@ func _get_raw_track_position(raycast: RayCast2D) -> Vector2:
 		result = space_state.intersect_ray(query)
 	else:
 		# Hit a top surface, search further down for the next lower track
-		# This isn't relevant anymore but it still works and I'm too lazy to change it
 		var query := PhysicsRayQueryParameters2D.create(
 			collision_point + Vector2(0, MAX_TRACK_HEIGHT),
 			collision_point + Vector2(0, switch_track_dist)
@@ -182,8 +183,8 @@ func _get_expected_forward_direction(pos: Vector2) -> Vector2:
 	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	var surface_dir: Vector2 = -floor_normal
 	var query := PhysicsRayQueryParameters2D.create(
-		pos - surface_dir * MAX_TRACK_HEIGHT,
-		pos + surface_dir * MAX_TRACK_HEIGHT
+		pos - Vector2(0, MAX_TRACK_HEIGHT),
+		pos + Vector2(0, MAX_TRACK_HEIGHT)
 	)
 	query.exclude = [self]
 	var result: Dictionary = space_state.intersect_ray(query)

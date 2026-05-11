@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://clv383igd32dk"]
 
 [ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/world/main.gd" id="1_n2p0n"]
+[ext_resource type="FontFile" uid="uid://b6xuicnun3nrn" path="res://assets/fonts/georgia.ttf" id="2_1t6sp"]
 [ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scenes/player/player_camera.gd" id="2_dh6me"]
+[ext_resource type="PackedScene" uid="uid://cx4fu4m0vdltm" path="res://scenes/ui/pause_menu.tscn" id="2_gjyfe"]
 [ext_resource type="Texture2D" uid="uid://c7aw3qwgs3wxe" path="res://assets/art/Background/BG-Skyline.png" id="3_gjyfe"]
 [ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://assets/art/Background/obstacle-decor-spritesheet.png" id="4_1t6sp"]
 [ext_resource type="Texture2D" uid="uid://e124p8gqxyme" path="res://assets/art/Background/BG-Hills.png" id="5_5j3i8"]
@@ -92,14 +94,50 @@ sources/0 = SubResource("TileSetAtlasSource_8yo5y")
 [node name="Game" type="Node2D" unique_id=1063326671]
 script = ExtResource("1_n2p0n")
 
-[node name="ScoreCanvas" type="CanvasLayer" parent="." unique_id=1844504890]
+[node name="UI" type="CanvasLayer" parent="." unique_id=790655452]
 
-[node name="ScoreLabel" type="Label" parent="ScoreCanvas" unique_id=724225406]
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=790998108]
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 71.0
 offset_bottom = 33.0
 text = "Score: 0"
+
+[node name="ControlsContainer" type="VBoxContainer" parent="UI" unique_id=496216030]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/ControlsContainer" unique_id=1043712429]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_1t6sp")
+text = "W to jump up"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/ControlsContainer" unique_id=1317707532]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_1t6sp")
+text = "S to jump down"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="UI/ControlsContainer" unique_id=1317925460]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_1t6sp")
+text = "Avoid obstacles in your way!"
+horizontal_alignment = 1
+
+[node name="PauseMenu" parent="UI" unique_id=59886769 instance=ExtResource("2_gjyfe")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=586235432]
 position = Vector2(63, 41)

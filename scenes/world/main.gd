@@ -2,7 +2,8 @@ extends Node2D
 
 
 @onready var score_label = $UI/ScoreLabel
-@onready var pause_menu = $"UI/PauseMenu"
+@onready var pause_menu = $UI/PauseMenu
+@onready var controls_container = $UI/ControlsContainer
 
 func _ready() -> void:
 	AudioManager.change_music("game")
@@ -33,4 +34,9 @@ func _on_score_changed(score: int) -> void:
 func fade_controls_text() -> void:
 	await get_tree().create_timer(5.0).timeout
 	var tween = get_tree().create_tween()
-	tween.tween_property($ControlsCanvas/Label, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1)
+	for label in controls_container.get_children():
+		tween.parallel().tween_property(label, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1)
+
+
+func _on_kill_plane_body_entered(body: Node2D) -> void:
+	print("HI")
