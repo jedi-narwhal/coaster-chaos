@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dafks0mahk7sl"]
+
+[ext_resource type="Script" uid="uid://bqe3at34ahcci" path="res://scenes/track/path_move_tool.gd" id="1_a4bto"]
+[ext_resource type="Script" uid="uid://dsrv5fg4s8os7" path="res://scenes/track/path_movement.gd" id="2_kg0bd"]
+[ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://scenes/track/obstacle.gd" id="3_a4bto"]
+[ext_resource type="Texture2D" uid="uid://cjvooit4vr1ui" path="res://assets/art/Obstacles/spiky-bubble.png" id="4_a4bto"]
+
+[sub_resource type="Curve2D" id="Curve2D_uwlog"]
+_data = {
+"points": PackedVector2Array(49.822258, 35.918373, -49.822258, -35.918373, 495, -60, 64.59514, 27.807774, -64.59514, -27.807774, 387, 43, 39.10468, 59.09152, -39.10468, -59.09152, 309, -58, 43.449646, -30.704416, -43.449646, 30.704416, 223, 49, 33.60106, -30.704414, -33.60106, 30.704414, 132, -58, 59.38118, -43.449646, -59.38118, 43.449646, 74, 47, 42.29099, 0.5793286, -42.29099, -0.5793286, -23, -57, 44.897964, -2.896643, -44.897964, 2.896643, -94, 48, 21.435158, 12.745229, -21.435158, -12.745229, -144, -60)
+}
+point_count = 9
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p81s"]
+size = Vector2(7.206299, 7.206299)
+
+[node name="Path2D" type="Path2D" unique_id=1639061960]
+curve = SubResource("Curve2D_uwlog")
+script = ExtResource("1_a4bto")
+x_offset = 200.0
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=2143913190]
+position = Vector2(495, -60)
+rotation = -2.5169573
+script = ExtResource("2_kg0bd")
+
+[node name="Obstacle" type="Area2D" parent="PathFollow2D" unique_id=1888632384]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("3_a4bto")
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Obstacle" unique_id=34021816]
+texture = ExtResource("4_a4bto")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Obstacle" unique_id=1575341523]
+shape = SubResource("RectangleShape2D_2p81s")
+
+[connection signal="body_entered" from="PathFollow2D/Obstacle" to="PathFollow2D/Obstacle" method="_on_body_entered"]

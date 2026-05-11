@@ -1,17 +1,12 @@
-extends Area2D
+class_name Obstacle extends Area2D
 
-class_name Obstacle
-
-@export var textures: Array[Texture2D]
-#@export var speed_reduction := 0.5
+@export var speed_reduction := 0.25
 @export var score_decrement := 10
 
 @onready var sprite = $Sprite2D
 
-
 func _ready() -> void:
-	if not textures.is_empty():
-		sprite.texture = textures.pick_random()
+	pass
 
 
 ## Removes 1 health when colliding with [param body], 

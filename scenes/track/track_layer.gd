@@ -13,7 +13,8 @@ const MIN_Y = -28
 const MAX_Y = 8
 
 @export var obstacle_scene: PackedScene
-@export var obstacle_container: Node2D
+@export var moving_obstacles: Array[PackedScene]
+@export var boost_scene: PackedScene
 @export var player: CharacterBody2D
 @export var terrain_set: int = 0
 @export var terrain: int = 0
@@ -24,9 +25,15 @@ var VALID_SLOPES: Dictionary[int, Array] = {
 	Slope.DOWN: [Slope.FLAT, Slope.DOWN],
 }
 
-var obstacle_chance: float = 0.10
+var obstacle_container: Node2D
 
-var generate_amount: int = 40
+var obstacle_chance: float = 0.10
+var moving_obstacle_chance: float = 0.05
+var boost_chance: float = 0.05
+
+var obstacle_cooldown: int = 2
+
+var generate_distance: int = 40
 var clean_distance: int = 40
 var furthest_clean_x: int = -1
 var furthest_x: Array[int] = [0, 0, 0]
@@ -34,11 +41,18 @@ var furthest_y: Array[int] = [0, MAX_DIST_APART, MAX_DIST_APART * 2]
 var last_slope: Array[int] = [Slope.FLAT, Slope.FLAT, Slope.FLAT]
 
 
+func _ready() -> void:
+	obstacle_container = Node2D.new()
+	obstacle_container.name = "Obstacles"
+	obstacle_container.z_index = 10
+	get_parent().add_child.call_deferred(obstacle_container)
+
+
 func _physics_process(_delta: float) -> void:
 	var player_x: int = get_child(0).local_to_map(to_local(player.global_position)).x
 	clean_old_tiles(player_x)
 	for i in range(MAX_GENERATIONS):
-		if furthest_x[0] >= player_x + generate_amount:
+		if furthest_x[0] >= player_x + generate_distance:
 			break
 		var prev_x: int = furthest_x[0]
 		generate_tiles()
@@ -48,71 +62,109 @@ func _physics_process(_delta: float) -> void:
 
 func generate_tiles() -> void:
 	var cells: Array[Array] = [[], [], []]
-
+	var x: int = furthest_x[0]
 	for i in get_child_count():
 		cells[i].append(Vector2i(furthest_x[i] - 1, furthest_y[i]))
+	
+	if obstacle_cooldown > 0:
+		obstacle_cooldown -= 1
+	for i in get_child_count():
+		var valid_slopes: Array = VALID_SLOPES[last_slope[i]].duplicate()
 
-	for x in range(furthest_x[0], furthest_x[0] + generate_amount):
-		var obstacle_spawned: bool = false
-		for i in get_child_count():
-			var track := get_child(i) as TileMapLayer
-			var valid_slopes: Array = VALID_SLOPES[last_slope[i]].duplicate()
+		# Clamp between Y bounds
+		if furthest_y[i] >= MAX_Y:	# Y too high means too low on map
+			valid_slopes.erase(Slope.DOWN)
+		if furthest_y[i] <= MIN_Y:	# Y too low means too high on map
+			valid_slopes.erase(Slope.UP)
 
-			# Clamp between Y bounds
-			if furthest_y[i] >= MAX_Y:	# Y too high means too low on map
-				valid_slopes.erase(Slope.DOWN)
-			if furthest_y[i] <= MIN_Y:	# Y too low means too high on map
-				valid_slopes.erase(Slope.UP)
+		# Remove slope option if too far from a track
+		for neighbor in get_child_count():
+			var distance: int = abs(furthest_y[i] - furthest_y[neighbor])
+			if distance >= MAX_DIST_APART:
+				if furthest_y[i] > furthest_y[neighbor]:
+					valid_slopes.erase(Slope.DOWN)
+				elif furthest_y[i] < furthest_y[neighbor]:
+					valid_slopes.erase(Slope.UP)
 
-			# Remove slope option if too far from a track
-			for neighbor in get_child_count():
-				var distance: int = abs(furthest_y[i] - furthest_y[neighbor])
-				if distance >= MAX_DIST_APART:
-					if furthest_y[i] > furthest_y[neighbor]:
-						valid_slopes.erase(Slope.DOWN)
-					elif furthest_y[i] < furthest_y[neighbor]:
-						valid_slopes.erase(Slope.UP)
+		# Prevent overlapping tracks
+		for neighbor in range(i):
+			for slope in Slope.values():
+				if furthest_y[i] + slope == furthest_y[neighbor]:
+					valid_slopes.erase(slope)
 
-			# Prevent overlapping tracks
-			for neighbor in range(i):
-				for slope in Slope.values():
-					if furthest_y[i] + slope == furthest_y[neighbor]:
-						valid_slopes.erase(slope)
+		# If Slope.FLAT was removed, add it back so it doesn't crash
+		if valid_slopes.is_empty():
+			valid_slopes = [Slope.FLAT]
 
-			# If Slope.FLAT was removed, add it back so it doesn't crash
-			if valid_slopes.is_empty():
-				valid_slopes = [Slope.FLAT]
-
-			var slope: int = valid_slopes.pick_random()
-			var y: int = furthest_y[i] + slope
-			if slope != Slope.FLAT:
-				cells[i].append(Vector2i(x, furthest_y[i]))
-			cells[i].append(Vector2i(x, y))
-			
-			if slope == Slope.FLAT and not obstacle_spawned:
-				obstacle_spawned = spawn_obstacle(i, x, y)
-			
-			furthest_y[i] = y
-			last_slope[i] = slope
-
+		var slope: int = valid_slopes.pick_random()
+		var y: int = furthest_y[i] + slope
+		if slope != Slope.FLAT:
+			cells[i].append(Vector2i(x, furthest_y[i]))
+		cells[i].append(Vector2i(x, y))
+		
+		if obstacle_cooldown == 0:
+			if spawn_obstacle(i, x, y, slope):
+				obstacle_cooldown = 2
+		
+		furthest_y[i] = y
+		last_slope[i] = slope
+	
 	for i in get_child_count():
 		var track := get_child(i) as TileMapLayer
 		track.set_cells_terrain_connect(cells[i], terrain_set, terrain)
-		furthest_x[i] += generate_amount
+		furthest_x[i] += 1
 
 
-func spawn_obstacle(track_idx: int, x: int, y: int) -> bool:
-	if randf() > obstacle_chance:
-		return false
+## Might spawn a track object.
+## If this successfully spawns an obstacle, returns [code]true[/code].
+func spawn_obstacle(track_idx: int, x: int, y: int, slope: int) -> bool:
+	var weights = PackedFloat32Array([
+		obstacle_chance, 
+		moving_obstacle_chance,
+		boost_chance,
+	])
+	var total_weight: float = 0.0
+	for weight in weights:
+		total_weight += weight
+	weights.append(1.0 - total_weight)
+	var idx = RandomNumberGenerator.new().rand_weighted(weights)
+	var obstacle: Node2D
+	match idx:
+		TrackObject.STATIC:
+			obstacle = obstacle_scene.instantiate() as Obstacle
+		TrackObject.MOVING:
+			obstacle = moving_obstacles.pick_random().instantiate()
+		TrackObject.BOOST:
+			obstacle = boost_scene.instantiate()
+		_:
+			return false
+	match slope:
+		Slope.UP:
+			obstacle.global_rotation = -PI / 4
+		Slope.DOWN:
+			obstacle.global_rotation = PI / 4
 
 	var track: TileMapLayer = get_child(track_idx)
 	var obstacle: Node2D = obstacle_scene.instantiate()
 
 	var local_pos: Vector2 = track.map_to_local(Vector2i(x, y))
 	var world_pos: Vector2 = track.to_global(local_pos)
-	obstacle.global_position = world_pos - Vector2(0, track.tile_set.tile_size.y)
-
+	obstacle.global_position = world_pos
+	var offset := Vector2(0, 0)
+	match slope:
+		Slope.FLAT:
+			offset = Vector2(0, -1) * track.tile_set.tile_size.y
+		Slope.UP:
+			offset = Vector2(-1, -1).normalized() * 18
+		Slope.DOWN:
+			offset = Vector2(1,-1).normalized() * 18
+	obstacle.global_position += offset
+	
+	if idx == TrackObject.MOVING:
+		obstacle.global_rotation = 0
+		obstacle.global_position.y = 0
 	obstacle_container.add_child(obstacle)
+	print("Tile location: %s, Obstacle location: %s" % [str(world_pos), str(obstacle.global_position)])
 	return true
 
 
@@ -121,4 +173,10 @@ func clean_old_tiles(player_x: int) -> void:
 		for y in range(MIN_Y, MAX_Y):
 			for z in get_child_count():
 				get_child(z).erase_cell(Vector2i(x, y))
+	var local_pos: Vector2 = get_child(0).map_to_local(
+			Vector2i(player_x - clean_distance, 0))
+	var global_pos: Vector2 = to_global(local_pos)
+	for obstacle in obstacle_container.get_children():
+		if obstacle.global_position.x < global_pos.x:
+			obstacle.call_deferred("queue_free")
 	furthest_clean_x = player_x - clean_distance - 1
