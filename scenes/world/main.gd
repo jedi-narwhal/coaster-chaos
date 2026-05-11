@@ -45,7 +45,3 @@ func fade_controls_text() -> void:
 	var tween = get_tree().create_tween()
 	for label in controls_container.get_children():
 		tween.parallel().tween_property(label, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1)
-
-
-func _on_kill_plane_body_entered(body: Node2D) -> void:
-	print("HI")

@@ -47,7 +47,6 @@ func _ready() -> void:
 	floor_raycast.target_position.y = $CollisionShape2D.shape.height / 2.0 + 4.0
 	velocity = speed * forward_direction
 	await get_tree().physics_frame
-	print(op1)
 	_launch()
 
 
