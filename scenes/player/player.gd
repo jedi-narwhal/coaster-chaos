@@ -29,9 +29,9 @@ var _switching_track := false
 var launch := false
 
 # These are set in-game
-@export var op1: AnimatedSprite2D
-@export var op2: AnimatedSprite2D
-@export var op3: AnimatedSprite2D
+var op1: AnimatedSprite2D
+var op2: AnimatedSprite2D
+var op3: AnimatedSprite2D
 
 @export var current_track_layer: int = TrackLayer.TWO
 @onready var up_raycast: RayCast2D = $UpRayCast
