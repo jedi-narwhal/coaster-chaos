@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cx4fu4m0vdltm"]
 
-[ext_resource type="Texture2D" uid="uid://rqvf8ae5csm6" path="res://assets/art/pause_menu/UntitledArtwork2-export.png" id="1_6tw0m"]
 [ext_resource type="Script" uid="uid://ceone5qsjv7b2" path="res://scenes/ui/pause_menu.gd" id="1_f6eus"]
 [ext_resource type="Texture2D" uid="uid://0curasn0h02e" path="res://assets/art/pause_menu/redbutton.png" id="2_0lmf7"]
+[ext_resource type="Texture2D" uid="uid://b8ttnnwqj54op" path="res://assets/art/pause_menu/UntitledArtwork2-export-export.png" id="2_f6eus"]
 
 [node name="PauseMenu" type="Control" unique_id=59886769]
 process_mode = 3
@@ -21,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_6tw0m")
+texture = ExtResource("2_f6eus")
 
 [node name="Label" type="Label" parent="TextureRect" unique_id=1627226361]
 layout_mode = 0
