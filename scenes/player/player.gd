@@ -23,6 +23,7 @@ var floor_normal := Vector2.UP
 var player_health := 3
 var speed := 1.0
 var speed_gain := 0.03
+var can_move := true
 
 var on_track := false
 var _switching_track := false
@@ -51,6 +52,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not can_move:
+		velocity = Vector2.ZERO
+		return
+	
 	# Rolling animation
 	if velocity.length() > 0:
 		$AnimatedSprite2D.play("rolling")
