@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Obstacle
+
 @export var textures: Array[Texture2D]
 #@export var speed_reduction := 0.5
 @export var score_decrement := 10
