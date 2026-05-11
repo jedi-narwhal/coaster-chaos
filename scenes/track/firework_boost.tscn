@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bafhjmtv2l5nm"]
+
+[ext_resource type="Script" uid="uid://chiu3jwbfnls4" path="res://scenes/track/firework_boost.gd" id="1_d8y2d"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d8y2d"]
+load_path = "res://.godot/imported/popcorn.png-7a63e2749bcf9be7bb0b05a189c2d014.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jngmn"]
+size = Vector2(14, 14)
+
+[node name="FireworkBoost" type="Area2D" unique_id=1069573131]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_d8y2d")
+metadata/_custom_type_script = "uid://chiu3jwbfnls4"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1582562198]
+modulate = Color(1, 0, 0, 1)
+rotation = 3.1415927
+texture = SubResource("CompressedTexture2D_d8y2d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1745781807]
+shape = SubResource("RectangleShape2D_jngmn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

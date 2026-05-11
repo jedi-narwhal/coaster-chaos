@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="11_6gnby"]
 [ext_resource type="PackedScene" uid="uid://cx4fu4m0vdltm" path="res://scenes/ui/pause_menu.tscn" id="11_85j56"]
 [ext_resource type="PackedScene" uid="uid://bicxc8d552e64" path="res://scenes/track/obstacle.tscn" id="12_wrw41"]
+[ext_resource type="PackedScene" uid="uid://bafhjmtv2l5nm" path="res://scenes/track/firework_boost.tscn" id="13_oaya2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_85j56"]
 texture = ExtResource("6_5bu78")
@@ -257,6 +258,18 @@ position = Vector2(0, 200)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane" unique_id=1107474011]
 shape = SubResource("WorldBoundaryShape2D_qip8x")
+
+[node name="FireworkBoost" parent="." unique_id=1069573131 instance=ExtResource("13_oaya2")]
+position = Vector2(226, -8)
+
+[node name="FireworkBoost3" parent="." unique_id=1902854038 instance=ExtResource("13_oaya2")]
+position = Vector2(565, 24)
+
+[node name="FireworkBoost4" parent="." unique_id=1928012418 instance=ExtResource("13_oaya2")]
+position = Vector2(744, 24)
+
+[node name="FireworkBoost2" parent="." unique_id=1861631774 instance=ExtResource("13_oaya2")]
+position = Vector2(340, 8)
 
 [connection signal="body_entered" from="KillPlane" to="." method="_on_kill_plane_body_entered"]
 [connection signal="body_entered" from="KillPlane" to="Player" method="_on_kill_plane_body_entered"]
