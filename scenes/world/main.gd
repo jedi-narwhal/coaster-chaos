@@ -18,6 +18,7 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("pause"):
 		print("The pause button was pressed!")
+		SceneManager.change_scene("pause_menu")
 		pauseMenu()
 
 func _on_score_changed(score: int) -> void:

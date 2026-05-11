@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cx4fu4m0vdltm"]
 
 [ext_resource type="Texture2D" uid="uid://rqvf8ae5csm6" path="res://assets/art/pause_menu/UntitledArtwork2-export.png" id="1_6tw0m"]
+[ext_resource type="Script" uid="uid://ceone5qsjv7b2" path="res://scenes/ui/pause_menu.gd" id="1_f6eus"]
 [ext_resource type="Texture2D" uid="uid://0curasn0h02e" path="res://assets/art/pause_menu/redbutton.png" id="2_0lmf7"]
 
 [node name="Pause menu" type="Control" unique_id=59886769]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_f6eus")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1141254259]
 layout_mode = 0
@@ -55,6 +57,7 @@ offset_left = 15.47998
 offset_top = -10.440002
 offset_right = 96.47998
 offset_bottom = 62.559998
+button_mask = 3
 texture_normal = ExtResource("2_0lmf7")
 texture_pressed = ExtResource("2_0lmf7")
 texture_hover = ExtResource("2_0lmf7")
@@ -76,3 +79,6 @@ offset_top = 308.0
 offset_right = 376.0
 offset_bottom = 335.0
 text = "Resume"
+
+[connection signal="pressed" from="TextureRect/e stop" to="." method="_on_e_stop_pressed"]
+[connection signal="pressed" from="TextureRect/resume" to="." method="_on_resume_pressed"]
