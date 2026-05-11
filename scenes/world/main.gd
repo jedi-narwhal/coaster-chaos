@@ -1,39 +1,28 @@
 extends Node2D
 
 
-@onready var score_label = $ScoreCanvas/ScoreLabel
-@onready var pause_menu= $"Pause menu"
-var paused= false
+@onready var score_label = $UI/ScoreLabel
+@onready var pause_menu = $"UI/PauseMenu"
 
 func _ready() -> void:
 	AudioManager.change_music("game")
 	ScoreManager.reset_score()
 	ScoreManager.score_changed.connect(_on_score_changed)
+	pause_menu.game_resumed.connect(_on_game_resumed)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if Input.is_action_pressed("reset"):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("reset"):
 		SceneManager.change_scene("end_screen")
-	
-	if Input.is_action_pressed("pause"):
-		print("The pause button was pressed!")
-		SceneManager.change_scene("pause_menu")
-		pauseMenu()
+	if event.is_action_pressed("pause"):
+		get_tree().paused = true
+		pause_menu.visible = true
+
+
+func _on_game_resumed() -> void:
+	get_tree().paused = false
+	pause_menu.visible = false
+
 
 func _on_score_changed(score: int) -> void:
 	score_label.text = "Score: " + str(score)
-	
-func pauseMenu():
-	print("running pause")
-	if paused:
-		pause_menu.hide()
-		Engine.time_scale = 1
-	else:
-		pause_menu.show()
-		Engine.time_scale = 0
-		
-	paused= !paused
-
-
-	

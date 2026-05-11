@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://ceone5qsjv7b2" path="res://scenes/ui/pause_menu.gd" id="1_f6eus"]
 [ext_resource type="Texture2D" uid="uid://0curasn0h02e" path="res://assets/art/pause_menu/redbutton.png" id="2_0lmf7"]
 
-[node name="Pause menu" type="Control" unique_id=59886769]
+[node name="PauseMenu" type="Control" unique_id=59886769]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,10 +15,12 @@ grow_vertical = 2
 script = ExtResource("1_f6eus")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1141254259]
-layout_mode = 0
-offset_top = 3.0
-offset_right = 636.0
-offset_bottom = 360.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_6tw0m")
 
 [node name="Label" type="Label" parent="TextureRect" unique_id=1627226361]
