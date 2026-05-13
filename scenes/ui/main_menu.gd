@@ -10,4 +10,8 @@ func _on_play_button_pressed() -> void:
 
 
 func _on_options_button_pressed() -> void:
-	pass
+	$OptionsMenu.show()
+
+
+func _on_texture_button_button_down() -> void:
+	$OptionsMenu.hide()

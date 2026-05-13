@@ -9,6 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://2b1rtusp2cet" path="res://assets/art/main_menu/PlayHover.png" id="5_yhxw7"]
 [ext_resource type="Texture2D" uid="uid://cyq3g8nc8a33b" path="res://assets/art/main_menu/OptionsHover.png" id="8_trj04"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_wb0q5"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_q85j6"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8g5eo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wb0q5"]
+font_color = Color(0, 0, 0, 1)
+
 [node name="MainMenu" type="Control" unique_id=1071416660]
 layout_mode = 3
 anchors_preset = 15
@@ -53,5 +62,60 @@ texture_normal = ExtResource("4_opfnp")
 texture_hover = ExtResource("8_trj04")
 texture_click_mask = ExtResource("5_cp0ys")
 
+[node name="OptionsMenu" type="TextureRect" parent="." unique_id=972061302]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_wb0q5")
+
+[node name="TextureRect" type="TextureRect" parent="OptionsMenu" unique_id=579588399]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture = SubResource("CanvasTexture_q85j6")
+
+[node name="TextureButton" type="TextureButton" parent="OptionsMenu" unique_id=1254755778]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture_normal = SubResource("CanvasTexture_8g5eo")
+
+[node name="Label" type="Label" parent="OptionsMenu" unique_id=282058461]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Jump tracks:
+      Up:         W / Up Arrow
+      Down:    S / Down Arrow
+
+      Reset:    R
+      Pause:   Esc"
+label_settings = SubResource("LabelSettings_wb0q5")
+vertical_alignment = 1
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="button_down" from="OptionsMenu/TextureButton" to="." method="_on_texture_button_button_down"]
