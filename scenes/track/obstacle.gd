@@ -1,8 +1,10 @@
+class_name BaseObstacle
 extends Area2D
+## Base obstacle that removes player health on collision.
+##
+## When the player enters the [code]Area2D[/code], the obstacle
+## removes 1 health and tweens this obstacle downward.
 
-class_name Obstacle
-
-@export var textures: Array[Texture2D]
 @export var speed_reduction := 0.25
 @export var score_decrement := 10
 
@@ -10,14 +12,13 @@ class_name Obstacle
 
 
 func _ready() -> void:
-	if not textures.is_empty():
-		sprite.texture = textures.pick_random()
+	pass
 
 
 ## Removes 1 health when colliding with [param body], 
 ## which should only be the Player CharacterBody2D.
 func _on_body_entered(body: Node2D) -> void:
-	if body.name != "Player":
+	if body is not Player:
 		return
 	body.remove_health()
 	$CollisionShape2D.set_deferred("disabled", true)

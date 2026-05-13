@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cjvooit4vr1ui" path="res://assets/art/Obstacles/spiky-bubble.png" id="1_hykig"]
 [ext_resource type="Script" uid="uid://d4mjvslmblxlg" path="res://scenes/track/spiky_bubble.gd" id="1_k1eo8"]
-[ext_resource type="Script" uid="uid://dsrv5fg4s8os7" path="res://scenes/track/bubble-path.gd" id="1_ttd2h"]
+[ext_resource type="Script" uid="uid://dsrv5fg4s8os7" path="res://scenes/track/follow_path.gd" id="1_ttd2h"]
 
 [sub_resource type="Curve2D" id="Curve2D_uwlog"]
 _data = {

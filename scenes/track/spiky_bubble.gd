@@ -1,4 +1,4 @@
-extends Obstacle
+extends BaseObstacle
 
 var rotation_speed = -80
 

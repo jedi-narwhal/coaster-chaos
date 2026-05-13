@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 enum TrackLayer { ONE = 1, TWO = 2, THREE = 3 }

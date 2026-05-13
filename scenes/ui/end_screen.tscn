@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c56avua7ys7u4"]
 
 [ext_resource type="Script" uid="uid://cvpu8c2oluiif" path="res://scenes/ui/end_screen.gd" id="1_f2mtv"]
-[ext_resource type="FontFile" uid="uid://b6xuicnun3nrn" path="res://assets/fonts/georgia.ttf" id="2_1gwaw"]
+[ext_resource type="FontFile" uid="uid://c8kvagd03kcd8" path="res://assets/fonts/georgia.ttf" id="2_1gwaw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbeiw"]
 bg_color = Color(0.14509805, 0.5882353, 0.9411765, 1)
@@ -22,14 +22,20 @@ grow_vertical = 2
 script = ExtResource("1_f2mtv")
 
 [node name="Label" type="Label" parent="." unique_id=1720886153]
-layout_mode = 0
-offset_left = 67.0
-offset_top = 52.0
-offset_right = 386.0
-offset_bottom = 140.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -282.0
+offset_top = 49.0
+offset_right = 282.0
+offset_bottom = 150.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_1gwaw")
-theme_override_font_sizes/font_size = 64
-text = "you died :("
+theme_override_font_sizes/font_size = 42
+text = "you died :(
+high score: 0"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=1890752201]
 layout_mode = 0

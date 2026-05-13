@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b52pkvnlsx20h"]
 
-[ext_resource type="Script" uid="uid://dsrv5fg4s8os7" path="res://scenes/track/bubble-path.gd" id="1_5o3rc"]
+[ext_resource type="Script" uid="uid://dsrv5fg4s8os7" path="res://scenes/track/follow_path.gd" id="1_5o3rc"]
 [ext_resource type="Texture2D" uid="uid://pmv4ymld0wy5" path="res://assets/art/Obstacles/balloon.png" id="1_kootw"]
 [ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://scenes/track/obstacle.gd" id="2_ji2f0"]
 

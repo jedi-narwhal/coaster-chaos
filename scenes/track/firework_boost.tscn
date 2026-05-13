@@ -6,7 +6,7 @@
 load_path = "res://.godot/imported/popcorn.png-7a63e2749bcf9be7bb0b05a189c2d014.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jngmn"]
-size = Vector2(14, 14)
+size = Vector2(10, 2)
 
 [node name="FireworkBoost" type="Area2D" unique_id=1069573131]
 collision_layer = 16
@@ -20,6 +20,7 @@ rotation = 3.1415927
 texture = SubResource("CompressedTexture2D_d8y2d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1745781807]
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_jngmn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

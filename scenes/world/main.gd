@@ -4,11 +4,10 @@ extends Node2D
 @onready var score_label = $UI/ScoreLabel
 @onready var pause_menu = $UI/PauseMenu
 @onready var controls_container = $UI/ControlsContainer
-@onready var launch_operators = $World/LaunchOperators
-@onready var player = $World/Player
+@onready var launch_operators = $LaunchOperators
+@onready var player = $Player
 
 @onready var pause_viewport = $UI/PauseMenu/TextureRect/SubViewportContainer/SubViewport
-@onready var world = $World
 
 func _ready() -> void:
 	AudioManager.change_music("game")
@@ -26,8 +25,8 @@ func _input(event: InputEvent) -> void:
 		SceneManager.change_scene("end_screen")
 	if event.is_action_pressed("pause"):
 		get_tree().paused = true
-		world.reparent(pause_viewport)
-		$UI/PauseMenu/TextureRect/SubViewportContainer/SubViewport/Camera2D.transform = player.get_node("Camera2D").transform
+		pause_viewport.world_2d = get_viewport().world_2d
+		pause_viewport.get_node("Camera2D").transform = player.get_node("Camera2D").transform
 		pause_menu.visible = true
 
 
