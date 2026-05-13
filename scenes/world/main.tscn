@@ -1,18 +1,21 @@
 [gd_scene format=4 uid="uid://cu8n50jk8rnyw"]
 
 [ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/world/main.gd" id="1_qip8x"]
+[ext_resource type="FontFile" uid="uid://c8kvagd03kcd8" path="res://assets/fonts/georgia.ttf" id="2_85j56"]
 [ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scenes/player/player_camera.gd" id="3_wcbaq"]
 [ext_resource type="Texture2D" uid="uid://c7aw3qwgs3wxe" path="res://assets/art/Background/BG-Skyline.png" id="5_i5mec"]
 [ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://assets/art/Background/obstacle-decor-spritesheet.png" id="6_5bu78"]
 [ext_resource type="Texture2D" uid="uid://e124p8gqxyme" path="res://assets/art/Background/BG-Hills.png" id="7_pibea"]
 [ext_resource type="Texture2D" uid="uid://bhvwbd6ols8jn" path="res://assets/art/Background/BG-Coaster.png" id="8_bolr6"]
 [ext_resource type="Texture2D" uid="uid://c5m0ssc47o67" path="res://assets/art/Background/BG-FG.png" id="9_hbyw3"]
-[ext_resource type="Texture2D" uid="uid://b31iib1r2qves" path="res://assets/art/Track/track-spritesheet.png" id="10_ubvmu"]
+[ext_resource type="PackedScene" uid="uid://dfwapfd326y5c" path="res://scenes/launch_operators/launch_operators.tscn" id="10_oaya2"]
+[ext_resource type="Texture2D" uid="uid://clixmh5cmev7k" path="res://assets/art/Track/track-spritesheet.png" id="10_ubvmu"]
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="11_6gnby"]
 [ext_resource type="PackedScene" uid="uid://cx4fu4m0vdltm" path="res://scenes/ui/pause_menu.tscn" id="11_85j56"]
-[ext_resource type="PackedScene" uid="uid://bicxc8d552e64" path="res://scenes/obstacles/obstacle.tscn" id="12_wrw41"]
+[ext_resource type="PackedScene" uid="uid://bicxc8d552e64" path="res://scenes/track/obstacle.tscn" id="12_wrw41"]
+[ext_resource type="PackedScene" uid="uid://bafhjmtv2l5nm" path="res://scenes/track/firework_boost.tscn" id="13_oaya2"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_85j56"]
 texture = ExtResource("6_5bu78")
 0:0/size_in_atlas = Vector2i(2, 2)
 0:0/0 = 0
@@ -21,16 +24,26 @@ texture = ExtResource("6_5bu78")
 4:0/size_in_atlas = Vector2i(2, 2)
 4:0/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_tefeu"]
+[sub_resource type="TileSet" id="TileSet_qip8x"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_tbgi4")
+sources/0 = SubResource("TileSetAtlasSource_85j56")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21xkr"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ggrwn"]
 texture = ExtResource("10_ubvmu")
 0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
 1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -4, 8, -4, 8, -8)
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
 2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/left_side = 0
 4:1/0 = 0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
 5:1/0 = 0
@@ -43,23 +56,45 @@ texture = ExtResource("10_ubvmu")
 10:1/0 = 0
 10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
 6:3/0 = 0
+6:3/0/terrain_set = 0
+6:3/0/terrain = 0
 6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4, -8, -8, -4)
+6:3/0/terrains_peering_bit/left_side = 0
+6:3/0/terrains_peering_bit/top_side = 0
 8:3/0 = 0
+8:3/0/terrain_set = 0
+8:3/0/terrain = 0
 8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, -8, 8, -3, -2, 8)
+8:3/0/terrains_peering_bit/right_side = 0
+8:3/0/terrains_peering_bit/bottom_side = 0
 10:3/0 = 0
+10:3/0/terrain_set = 0
+10:3/0/terrain = 0
 10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4, -8, -8, -4)
 6:6/0 = 0
+6:6/0/terrain_set = 0
+6:6/0/terrain = 0
 6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, -8, -8, -3, 2, 8)
+6:6/0/terrains_peering_bit/bottom_side = 0
+6:6/0/terrains_peering_bit/left_side = 0
 8:6/0 = 0
+8:6/0/terrain_set = 0
+8:6/0/terrain = 0
 8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 4, -8, 8, -4)
+8:6/0/terrains_peering_bit/right_side = 0
+8:6/0/terrains_peering_bit/top_side = 0
 10:6/0 = 0
 10:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 4, -8, 8, -4)
 
 [sub_resource type="TileSet" id="TileSet_jyhfs"]
 physics_layer_0/collision_layer = 2
-sources/0 = SubResource("TileSetAtlasSource_21xkr")
+physics_layer_0/collision_mask = 8
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Floor"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_ggrwn")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d1ilt"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qip8x"]
 
 [node name="Game" type="Node2D" unique_id=1063326671]
 script = ExtResource("1_qip8x")
@@ -73,10 +108,41 @@ offset_right = 71.0
 offset_bottom = 33.0
 text = "Score: 0"
 
+[node name="ControlsContainer" type="VBoxContainer" parent="UI" unique_id=458992839]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/ControlsContainer" unique_id=1874866571]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_85j56")
+text = "W to jump up"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/ControlsContainer" unique_id=540184211]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_85j56")
+text = "S to jump down"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="UI/ControlsContainer" unique_id=126678947]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_85j56")
+text = "Avoid obstacles in your way!"
+horizontal_alignment = 1
+
 [node name="PauseMenu" parent="UI" unique_id=59886769 instance=ExtResource("11_85j56")]
 visible = false
-
-[node name="SubViewport" type="SubViewport" parent="UI/PauseMenu" unique_id=964538183]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=586235432]
 position = Vector2(63, 41)
@@ -84,104 +150,134 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 script = ExtResource("3_wcbaq")
 
-[node name="Background" type="Node" parent="." unique_id=1160022022]
+[node name="World" type="Node" parent="." unique_id=818843798]
 
-[node name="Parallax Skyline" type="Parallax2D" parent="Background" unique_id=1891254487]
+[node name="LaunchOperators" parent="World" unique_id=227399956 instance=ExtResource("10_oaya2")]
+position = Vector2(74, 24)
+
+[node name="Background" type="Node" parent="World" unique_id=413629735]
+
+[node name="Parallax Skyline" type="Parallax2D" parent="World/Background" unique_id=1018137379]
 z_index = -4
-scroll_scale = Vector2(0.4, 0.4)
+scroll_scale = Vector2(0.4, 0.3)
 scroll_offset = Vector2(0, 50)
 repeat_size = Vector2(512, 0)
 repeat_times = 4
 
-[node name="Background" type="Sprite2D" parent="Background/Parallax Skyline" unique_id=536822848]
+[node name="Background" type="Sprite2D" parent="World/Background/Parallax Skyline" unique_id=574662785]
 texture_filter = 1
 position = Vector2(0, 50)
 texture = ExtResource("5_i5mec")
 
-[node name="Parallax Clouds" type="Parallax2D" parent="Background" unique_id=1469931002]
-modulate = Color(0.83889705, 0.83889705, 0.838897, 1)
+[node name="Parallax Clouds" type="Parallax2D" parent="World/Background" unique_id=2021076948]
 z_index = -3
-scroll_scale = Vector2(0.8, 0.8)
+scroll_scale = Vector2(0.8, 0.6)
 scroll_offset = Vector2(0, 40)
 repeat_size = Vector2(512, 0)
 repeat_times = 4
 
-[node name="CloudLayer" type="TileMapLayer" parent="Background/Parallax Clouds" unique_id=685078123]
-use_parent_material = true
+[node name="CloudLayer" type="TileMapLayer" parent="World/Background/Parallax Clouds" unique_id=919565466]
+modulate = Color(0.7636, 0.8678667, 0.92, 1)
 tile_map_data = PackedByteArray("AAABAP//AAAAAAAAAAAEAP//AAACAAAAAAD/////AAAEAAAAAAAGAP7/AAAAAAAAAAAIAP//AAACAAAAAAAKAP3/AAAEAAAAAAALAP7/AAAAAAAAAAA=")
-tile_set = SubResource("TileSet_tefeu")
+tile_set = SubResource("TileSet_qip8x")
 
-[node name="Parallax Hills" type="Parallax2D" parent="Background" unique_id=1824780750]
+[node name="Parallax Hills" type="Parallax2D" parent="World/Background" unique_id=347259294]
 z_index = -3
-scroll_scale = Vector2(0.45, 0.45)
+scroll_scale = Vector2(0.45, 0.3)
 scroll_offset = Vector2(0, 50)
 repeat_size = Vector2(512, 0)
 repeat_times = 4
 
-[node name="Background" type="Sprite2D" parent="Background/Parallax Hills" unique_id=1515927362]
+[node name="Background" type="Sprite2D" parent="World/Background/Parallax Hills" unique_id=1146703966]
 texture_filter = 1
 position = Vector2(0, 50)
 texture = ExtResource("7_pibea")
 
-[node name="Parallax Coaster" type="Parallax2D" parent="Background" unique_id=1613399823]
+[node name="Parallax Coaster" type="Parallax2D" parent="World/Background" unique_id=386887090]
 z_index = -2
-scroll_scale = Vector2(0.55, 0.55)
+scroll_scale = Vector2(0.55, 0.4)
 scroll_offset = Vector2(0, 50)
 repeat_size = Vector2(512, 0)
 repeat_times = 4
 
-[node name="Background" type="Sprite2D" parent="Background/Parallax Coaster" unique_id=467663368]
+[node name="Background" type="Sprite2D" parent="World/Background/Parallax Coaster" unique_id=581153005]
 texture_filter = 1
 position = Vector2(0, 50)
 texture = ExtResource("8_bolr6")
 
-[node name="Parallax FG" type="Parallax2D" parent="Background" unique_id=806524513]
+[node name="Parallax FG" type="Parallax2D" parent="World/Background" unique_id=2122141417]
 z_index = -1
-scroll_scale = Vector2(0.6, 0.6)
+scroll_scale = Vector2(0.6, 0.4)
 scroll_offset = Vector2(0, 50)
 repeat_size = Vector2(512, 0)
 repeat_times = 4
 
-[node name="Background" type="Sprite2D" parent="Background/Parallax FG" unique_id=985199580]
+[node name="Background" type="Sprite2D" parent="World/Background/Parallax FG" unique_id=289877119]
 texture_filter = 1
 position = Vector2(0, 50)
 texture = ExtResource("9_hbyw3")
 
-[node name="TrackLayer" type="TileMapLayer" parent="." unique_id=344472750]
+[node name="Parallax Floor" type="Parallax2D" parent="World/Background" unique_id=1133121019]
+z_index = -1
+scroll_scale = Vector2(0.6, 0.4)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="ColorRect" type="ColorRect" parent="World/Background/Parallax Floor" unique_id=1063023777]
+offset_right = 512.0
+offset_bottom = 132.0
+color = Color(0.36078432, 0.3647059, 0.4392157, 1)
+
+[node name="TrackLayer" type="TileMapLayer" parent="World" unique_id=344472750]
 z_index = 100
 use_parent_material = true
-tile_map_data = PackedByteArray("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")
+tile_map_data = PackedByteArray("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")
 tile_set = SubResource("TileSet_jyhfs")
 
-[node name="Player" parent="." unique_id=364403916 instance=ExtResource("11_6gnby")]
+[node name="Player" parent="World" unique_id=364403916 instance=ExtResource("11_6gnby")]
 position = Vector2(56, 40)
-floor_max_angle = 3.1415927
 
-[node name="Obstacle" parent="." unique_id=1888632384 instance=ExtResource("12_wrw41")]
+[node name="Obstacle" parent="World" unique_id=1888632384 instance=ExtResource("12_wrw41")]
 position = Vector2(169, 72)
 
-[node name="Obstacle2" parent="." unique_id=764009358 instance=ExtResource("12_wrw41")]
+[node name="Obstacle2" parent="World" unique_id=764009358 instance=ExtResource("12_wrw41")]
 position = Vector2(262, 104)
 
-[node name="Obstacle3" parent="." unique_id=1372068564 instance=ExtResource("12_wrw41")]
+[node name="Obstacle3" parent="World" unique_id=1372068564 instance=ExtResource("12_wrw41")]
 position = Vector2(315, 8)
 
-[node name="Obstacle4" parent="." unique_id=199606067 instance=ExtResource("12_wrw41")]
+[node name="Obstacle4" parent="World" unique_id=199606067 instance=ExtResource("12_wrw41")]
 position = Vector2(520, 24)
 
-[node name="Obstacle5" parent="." unique_id=1018290037 instance=ExtResource("12_wrw41")]
+[node name="Obstacle5" parent="World" unique_id=1018290037 instance=ExtResource("12_wrw41")]
 position = Vector2(520, 88)
 
-[node name="Obstacle6" parent="." unique_id=1512942435 instance=ExtResource("12_wrw41")]
+[node name="Obstacle6" parent="World" unique_id=1512942435 instance=ExtResource("12_wrw41")]
 position = Vector2(616, 8)
 
-[node name="Obstacle7" parent="." unique_id=1617510656 instance=ExtResource("12_wrw41")]
+[node name="Obstacle7" parent="World" unique_id=1617510656 instance=ExtResource("12_wrw41")]
 position = Vector2(725, -8)
 
-[node name="KillPlane" type="Area2D" parent="." unique_id=1556265604]
+[node name="KillPlane" type="Area2D" parent="World" unique_id=1556265604]
 position = Vector2(0, 200)
+collision_layer = 0
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlane" unique_id=1107474011]
-shape = SubResource("WorldBoundaryShape2D_d1ilt")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/KillPlane" unique_id=1107474011]
+shape = SubResource("WorldBoundaryShape2D_qip8x")
 
-[connection signal="body_entered" from="KillPlane" to="Player" method="_on_kill_plane_body_entered"]
+[node name="FireworkBoost" parent="World" unique_id=1069573131 instance=ExtResource("13_oaya2")]
+position = Vector2(226, -8)
+
+[node name="FireworkBoost3" parent="World" unique_id=1902854038 instance=ExtResource("13_oaya2")]
+position = Vector2(565, 24)
+
+[node name="FireworkBoost4" parent="World" unique_id=1928012418 instance=ExtResource("13_oaya2")]
+position = Vector2(744, 24)
+
+[node name="FireworkBoost2" parent="World" unique_id=1861631774 instance=ExtResource("13_oaya2")]
+position = Vector2(340, 8)
+
+[connection signal="body_entered" from="World/KillPlane" to="." method="_on_kill_plane_body_entered"]
+[connection signal="body_entered" from="World/KillPlane" to="World/Player" method="_on_kill_plane_body_entered"]

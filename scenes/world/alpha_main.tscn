@@ -1,0 +1,395 @@
+[gd_scene format=4 uid="uid://clv383igd32dk"]
+
+[ext_resource type="Script" uid="uid://c8ljsx2youmge" path="res://scenes/world/main.gd" id="1_w85pj"]
+[ext_resource type="FontFile" uid="uid://c8kvagd03kcd8" path="res://assets/fonts/georgia.ttf" id="2_gq604"]
+[ext_resource type="PackedScene" uid="uid://cx4fu4m0vdltm" path="res://scenes/ui/pause_menu.tscn" id="3_w2ny7"]
+[ext_resource type="Script" uid="uid://easvigf0lb7a" path="res://scenes/player/player_camera.gd" id="4_45tw2"]
+[ext_resource type="Texture2D" uid="uid://c7aw3qwgs3wxe" path="res://assets/art/Background/BG-Skyline.png" id="5_0muk7"]
+[ext_resource type="Texture2D" uid="uid://gwrnfyqvhfgq" path="res://assets/art/Background/obstacle-decor-spritesheet.png" id="6_a0sbk"]
+[ext_resource type="Texture2D" uid="uid://e124p8gqxyme" path="res://assets/art/Background/BG-Hills.png" id="7_s0vsq"]
+[ext_resource type="Texture2D" uid="uid://bhvwbd6ols8jn" path="res://assets/art/Background/BG-Coaster.png" id="8_jl075"]
+[ext_resource type="Texture2D" uid="uid://c5m0ssc47o67" path="res://assets/art/Background/BG-FG.png" id="9_tl8ai"]
+[ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="10_yu7nl"]
+[ext_resource type="Script" uid="uid://br46ytaa6frly" path="res://scenes/track/track_layer.gd" id="11_of1br"]
+[ext_resource type="PackedScene" uid="uid://bicxc8d552e64" path="res://scenes/track/obstacle.tscn" id="12_dsqry"]
+[ext_resource type="Texture2D" uid="uid://clixmh5cmev7k" path="res://assets/art/Track/track-spritesheet.png" id="13_8ecey"]
+[ext_resource type="PackedScene" uid="uid://dfwapfd326y5c" path="res://scenes/launch_operators/launch_operators.tscn" id="14_ahp0x"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c6ek7"]
+texture = ExtResource("6_a0sbk")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_tefeu"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_c6ek7")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1t6sp"]
+texture = ExtResource("13_8ecey")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -4, 8, -4, 8, -8)
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/left_side = 0
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+5:1/0 = 0
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+7:1/0 = 0
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+9:1/0 = 0
+10:1/0 = 0
+10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+6:3/0 = 0
+6:3/0/terrain_set = 0
+6:3/0/terrain = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4, -8, -8, -4)
+6:3/0/terrains_peering_bit/left_side = 0
+6:3/0/terrains_peering_bit/top_side = 0
+8:3/0 = 0
+8:3/0/terrain_set = 0
+8:3/0/terrain = 0
+8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, -8, 8, -3, -2, 8)
+8:3/0/terrains_peering_bit/right_side = 0
+8:3/0/terrains_peering_bit/bottom_side = 0
+10:3/0 = 0
+10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4, -8, -8, -4)
+6:6/0 = 0
+6:6/0/terrain_set = 0
+6:6/0/terrain = 0
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, -8, -8, -3, 2, 8)
+6:6/0/terrains_peering_bit/bottom_side = 0
+6:6/0/terrains_peering_bit/left_side = 0
+8:6/0 = 0
+8:6/0/terrain_set = 0
+8:6/0/terrain = 0
+8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 4, -8, 8, -4)
+8:6/0/terrains_peering_bit/right_side = 0
+8:6/0/terrains_peering_bit/top_side = 0
+10:6/0 = 0
+10:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 4, -8, 8, -4)
+
+[sub_resource type="TileSet" id="TileSet_5j3i8"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 8
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Floor"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_1t6sp")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5j3i8"]
+texture = ExtResource("13_8ecey")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -4, 8, -4, 8, -8)
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/left_side = 0
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+5:1/0 = 0
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+7:1/0 = 0
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+9:1/0 = 0
+10:1/0 = 0
+10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+6:3/0 = 0
+6:3/0/terrain_set = 0
+6:3/0/terrain = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4, -8, -8, -4)
+6:3/0/terrains_peering_bit/left_side = 0
+6:3/0/terrains_peering_bit/top_side = 0
+8:3/0 = 0
+8:3/0/terrain_set = 0
+8:3/0/terrain = 0
+8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, -8, 8, -3, -2, 8)
+8:3/0/terrains_peering_bit/right_side = 0
+8:3/0/terrains_peering_bit/bottom_side = 0
+10:3/0 = 0
+10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4, -8, -8, -4)
+6:6/0 = 0
+6:6/0/terrain_set = 0
+6:6/0/terrain = 0
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, -8, -8, -3, 2, 8)
+6:6/0/terrains_peering_bit/bottom_side = 0
+6:6/0/terrains_peering_bit/left_side = 0
+8:6/0 = 0
+8:6/0/terrain_set = 0
+8:6/0/terrain = 0
+8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 4, -8, 8, -4)
+8:6/0/terrains_peering_bit/right_side = 0
+8:6/0/terrains_peering_bit/top_side = 0
+10:6/0 = 0
+10:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 4, -8, 8, -4)
+
+[sub_resource type="TileSet" id="TileSet_rsdf6"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 8
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Floor"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_5j3i8")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8yo5y"]
+texture = ExtResource("13_8ecey")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -4, 8, -4, 8, -8)
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/left_side = 0
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+5:1/0 = 0
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+7:1/0 = 0
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+9:1/0 = 0
+10:1/0 = 0
+10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, -8, -4)
+6:3/0 = 0
+6:3/0/terrain_set = 0
+6:3/0/terrain = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4, -8, -8, -4)
+6:3/0/terrains_peering_bit/left_side = 0
+6:3/0/terrains_peering_bit/top_side = 0
+8:3/0 = 0
+8:3/0/terrain_set = 0
+8:3/0/terrain = 0
+8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, -8, 8, -3, -2, 8)
+8:3/0/terrains_peering_bit/right_side = 0
+8:3/0/terrains_peering_bit/bottom_side = 0
+10:3/0 = 0
+10:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -4, -8, -8, -4)
+6:6/0 = 0
+6:6/0/terrain_set = 0
+6:6/0/terrain = 0
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, -8, -8, -3, 2, 8)
+6:6/0/terrains_peering_bit/bottom_side = 0
+6:6/0/terrains_peering_bit/left_side = 0
+8:6/0 = 0
+8:6/0/terrain_set = 0
+8:6/0/terrain = 0
+8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 4, -8, 8, -4)
+8:6/0/terrains_peering_bit/right_side = 0
+8:6/0/terrains_peering_bit/top_side = 0
+10:6/0 = 0
+10:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 4, -8, 8, -4)
+
+[sub_resource type="TileSet" id="TileSet_lkc7u"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 8
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Floor"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_8yo5y")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d1ilt"]
+
+[node name="Game" type="Node2D" unique_id=1063326671]
+script = ExtResource("1_w85pj")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1073126511]
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=168743666]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 33.0
+text = "Score: 0"
+
+[node name="ControlsContainer" type="VBoxContainer" parent="UI" unique_id=1315873132]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/ControlsContainer" unique_id=539078201]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_gq604")
+text = "W to jump up"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/ControlsContainer" unique_id=1170318920]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_gq604")
+text = "S to jump down"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="UI/ControlsContainer" unique_id=1684847194]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_gq604")
+text = "Avoid obstacles in your way!"
+horizontal_alignment = 1
+
+[node name="PauseMenu" parent="UI" unique_id=59886769 instance=ExtResource("3_w2ny7")]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=586235432]
+position = Vector2(63, 41)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+script = ExtResource("4_45tw2")
+
+[node name="World" type="Node" parent="." unique_id=1806065718]
+
+[node name="Background" type="Node2D" parent="World" unique_id=390206351]
+scale = Vector2(1.1, 1.1)
+
+[node name="Parallax Skyline" type="Parallax2D" parent="World/Background" unique_id=1891254487]
+z_index = -4
+scroll_scale = Vector2(0.4, 0.3)
+scroll_offset = Vector2(0, 50)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Background" type="Sprite2D" parent="World/Background/Parallax Skyline" unique_id=536822848]
+texture_filter = 1
+position = Vector2(0, 50)
+texture = ExtResource("5_0muk7")
+
+[node name="Parallax Clouds" type="Parallax2D" parent="World/Background" unique_id=1469931002]
+z_index = -3
+scroll_scale = Vector2(0.8, 0.6)
+scroll_offset = Vector2(0, 40)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="CloudLayer" type="TileMapLayer" parent="World/Background/Parallax Clouds" unique_id=685078123]
+modulate = Color(0.7636, 0.8678667, 0.92, 1)
+tile_map_data = PackedByteArray("AAABAP//AAAAAAAAAAAEAP//AAACAAAAAAD/////AAAEAAAAAAAGAP7/AAAAAAAAAAAIAP//AAACAAAAAAAKAP3/AAAEAAAAAAALAP7/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_tefeu")
+
+[node name="Parallax Hills" type="Parallax2D" parent="World/Background" unique_id=1824780750]
+z_index = -3
+scroll_scale = Vector2(0.45, 0.3)
+scroll_offset = Vector2(0, 50)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Background" type="Sprite2D" parent="World/Background/Parallax Hills" unique_id=1515927362]
+texture_filter = 1
+position = Vector2(0, 50)
+texture = ExtResource("7_s0vsq")
+
+[node name="Parallax Coaster" type="Parallax2D" parent="World/Background" unique_id=1613399823]
+z_index = -2
+scroll_scale = Vector2(0.55, 0.4)
+scroll_offset = Vector2(0, 50)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Background" type="Sprite2D" parent="World/Background/Parallax Coaster" unique_id=467663368]
+texture_filter = 1
+position = Vector2(0, 50)
+texture = ExtResource("8_jl075")
+
+[node name="Parallax FG" type="Parallax2D" parent="World/Background" unique_id=806524513]
+z_index = -1
+scroll_scale = Vector2(0.6, 0.4)
+scroll_offset = Vector2(0, 50)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="Background" type="Sprite2D" parent="World/Background/Parallax FG" unique_id=985199580]
+texture_filter = 1
+position = Vector2(0, 50)
+texture = ExtResource("9_tl8ai")
+
+[node name="Parallax Floor" type="Parallax2D" parent="World/Background" unique_id=1088298652]
+z_index = -1
+scroll_scale = Vector2(0.6, 0.4)
+scroll_offset = Vector2(0, 228)
+repeat_size = Vector2(512, 0)
+repeat_times = 4
+
+[node name="ColorRect" type="ColorRect" parent="World/Background/Parallax Floor" unique_id=911523867]
+offset_right = 512.0
+offset_bottom = 132.0
+color = Color(0.36078432, 0.3647059, 0.4392157, 1)
+
+[node name="Player" parent="World" unique_id=364403916 instance=ExtResource("10_yu7nl")]
+position = Vector2(-75, 72)
+
+[node name="Obstacles" type="Node2D" parent="World" unique_id=1402763311]
+
+[node name="Tracks" type="Node2D" parent="World" unique_id=1647765800 node_paths=PackedStringArray("obstacle_container", "player")]
+script = ExtResource("11_of1br")
+obstacle_scene = ExtResource("12_dsqry")
+obstacle_container = NodePath("../Obstacles")
+player = NodePath("../Player")
+
+[node name="TrackLayer1" type="TileMapLayer" parent="World/Tracks" unique_id=1010044100]
+z_index = 100
+use_parent_material = true
+tile_set = SubResource("TileSet_5j3i8")
+
+[node name="TrackLayer2" type="TileMapLayer" parent="World/Tracks" unique_id=1027107873]
+modulate = Color(0.8, 0.8, 0.8, 1)
+z_index = 100
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD5/wUAAAABAAAAAAD6/wUAAAABAAAAAAD7/wUAAAABAAAAAAD8/wUAAAABAAAAAAD9/wUAAAABAAAAAAD+/wUAAAABAAAAAAD//wUAAAACAAAAAAD4/wUAAAABAAAAAAD3/wUAAAABAAAAAAD2/wUAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_rsdf6")
+
+[node name="TrackLayer3" type="TileMapLayer" parent="World/Tracks" unique_id=1870746806]
+modulate = Color(0.6, 0.6, 0.6, 1)
+z_index = 100
+use_parent_material = true
+tile_set = SubResource("TileSet_lkc7u")
+
+[node name="LaunchOperators" parent="World" unique_id=227399956 instance=ExtResource("14_ahp0x")]
+z_index = -1
+position = Vector2(-57, 56)
+
+[node name="KillPlane" type="Area2D" parent="World" unique_id=1556265604]
+position = Vector2(0, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/KillPlane" unique_id=1107474011]
+shape = SubResource("WorldBoundaryShape2D_d1ilt")
+
+[connection signal="body_entered" from="World/KillPlane" to="World/Player" method="_on_kill_plane_body_entered"]
