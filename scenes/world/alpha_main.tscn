@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c5m0ssc47o67" path="res://assets/art/Background/BG-FG.png" id="9_tl8ai"]
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="10_yu7nl"]
 [ext_resource type="Script" uid="uid://br46ytaa6frly" path="res://scenes/track/track_generator.gd" id="11_of1br"]
-[ext_resource type="PackedScene" uid="uid://bicxc8d552e64" path="res://scenes/track/obstacle.tscn" id="12_dsqry"]
+[ext_resource type="PackedScene" uid="uid://dawa4xyvx5vs3" path="res://scenes/track/static_obstacle.tscn" id="11_w2ny7"]
 [ext_resource type="Texture2D" uid="uid://clixmh5cmev7k" path="res://assets/art/Track/track-spritesheet.png" id="13_8ecey"]
 [ext_resource type="PackedScene" uid="uid://dafks0mahk7sl" path="res://scenes/track/spiky_bubble.tscn" id="13_45tw2"]
 [ext_resource type="PackedScene" uid="uid://b52pkvnlsx20h" path="res://scenes/track/balloon.tscn" id="14_0muk7"]
@@ -354,7 +354,7 @@ position = Vector2(-75, 72)
 
 [node name="Tracks" type="Node2D" parent="." unique_id=1647765800 node_paths=PackedStringArray("obstacle_container", "player")]
 script = ExtResource("11_of1br")
-obstacle_scene = ExtResource("12_dsqry")
+obstacle_scene = ExtResource("11_w2ny7")
 moving_obstacles = Array[PackedScene]([ExtResource("13_45tw2"), ExtResource("14_0muk7")])
 boost_scene = ExtResource("15_a0sbk")
 obstacle_container = NodePath("../Obstacles")

@@ -1,18 +1,15 @@
 [gd_scene format=3 uid="uid://bicxc8d552e64"]
 
 [ext_resource type="Texture2D" uid="uid://bs6c752gul8kq" path="res://assets/art/Obstacles/popcorn.png" id="1_15o2q"]
-[ext_resource type="Script" uid="uid://7vdv5j2ukrss" path="res://scenes/track/static_obstacle.gd" id="1_h4xkc"]
+[ext_resource type="Script" uid="uid://cer17mnehthv2" path="res://scenes/track/obstacle.gd" id="1_h4xkc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2p81s"]
 size = Vector2(8, 2)
 
-[node name="Obstacle" type="Area2D" unique_id=1888632384]
+[node name="BaseObstacle" type="Area2D" unique_id=1888632384]
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("1_h4xkc")
-textures = null
-speed_reduction = null
-score_decrement = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=34021816]
 texture = ExtResource("1_15o2q")
