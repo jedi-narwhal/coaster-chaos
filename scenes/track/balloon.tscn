@@ -10,9 +10,8 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5o3rc"]
-radius = 5.0
-height = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p81s"]
+size = Vector2(9.968, 14.974396)
 
 [node name="Path2D" type="Path2D" unique_id=262029532]
 curve = SubResource("Curve2D_1fngw")
@@ -23,14 +22,16 @@ rotation = 0.08001929
 rotates = false
 script = ExtResource("1_5o3rc")
 
-[node name="Area2D" type="Area2D" parent="PathFollow2D" unique_id=405201572]
-collision_layer = 2
+[node name="BaseObstacle" type="Area2D" parent="PathFollow2D" unique_id=1888632384]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("2_ji2f0")
 
-[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Area2D" unique_id=1328961067]
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/BaseObstacle" unique_id=34021816]
 texture = ExtResource("1_kootw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Area2D" unique_id=71102251]
-shape = SubResource("CapsuleShape2D_5o3rc")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/BaseObstacle" unique_id=1575341523]
+position = Vector2(9.536743e-07, -0.48727417)
+shape = SubResource("RectangleShape2D_2p81s")
 
-[connection signal="body_entered" from="PathFollow2D/Area2D" to="PathFollow2D/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="PathFollow2D/BaseObstacle" to="PathFollow2D/BaseObstacle" method="_on_body_entered"]

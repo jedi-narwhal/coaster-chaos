@@ -6,6 +6,7 @@ extends Node2D
 @onready var controls_container = $UI/ControlsContainer
 @onready var launch_operators = $LaunchOperators
 @onready var player = $Player
+@onready var player_camera: Camera2D = $Player/Camera2D
 
 @onready var pause_viewport = $UI/PauseMenu/TextureRect/SubViewportContainer/SubViewport
 
@@ -26,7 +27,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		get_tree().paused = true
 		pause_viewport.world_2d = get_viewport().world_2d
-		pause_viewport.get_node("Camera2D").transform = player.get_node("Camera2D").transform
+		pause_viewport.get_node("Camera2D").global_transform = player_camera.global_transform
 		pause_menu.visible = true
 
 

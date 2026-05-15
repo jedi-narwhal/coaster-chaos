@@ -18,13 +18,18 @@ const MAX_GENERATIONS = 100
 const MIN_Y = -28
 const MAX_Y = 8
 
-@export var obstacle_scene: PackedScene
-@export var moving_obstacles: Array[PackedScene]
-@export var boost_scene: PackedScene
-@export var obstacle_container: Node2D
+@export var obstacle_scene: PackedScene = preload("res://scenes/track/obstacle.tscn")
+@export var moving_obstacles: Array[PackedScene] = [
+	preload("res://scenes/track/balloon.tscn"),
+	preload("res://scenes/track/spiky_bubble.tscn"),
+]
+@export var boost_scene: PackedScene = preload("res://scenes/track/firework_boost.tscn")
 @export var player: CharacterBody2D
 @export var terrain_set: int = 0
 @export var terrain: int = 0
+@onready var main_scene: Node2D = $".."
+
+var obstacle_container: Node2D
 
 var VALID_SLOPES: Dictionary[int, Array] = {
 	Slope.FLAT: [Slope.FLAT, Slope.DOWN, Slope.UP],
@@ -42,6 +47,12 @@ var furthest_clean_x: int = -1
 var furthest_x: Array[int] = [0, 0, 0]
 var furthest_y: Array[int] = [0, MAX_DIST_APART, MAX_DIST_APART * 2]
 var last_slope: Array[int] = [Slope.FLAT, Slope.FLAT, Slope.FLAT]
+
+
+func _ready() -> void:
+	obstacle_container = Node2D.new()
+	obstacle_container.name = "Obstacles"
+	main_scene.add_child.call_deferred(obstacle_container)
 
 
 func _physics_process(_delta: float) -> void:

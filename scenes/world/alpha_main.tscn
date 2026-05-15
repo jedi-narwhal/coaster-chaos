@@ -11,11 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://c1y5pku52vebe" path="res://scenes/player/player.tscn" id="10_yu7nl"]
 [ext_resource type="Script" uid="uid://br46ytaa6frly" path="res://scenes/track/track_generator.gd" id="11_of1br"]
 [ext_resource type="PackedScene" uid="uid://dawa4xyvx5vs3" path="res://scenes/track/static_obstacle.tscn" id="11_w2ny7"]
-[ext_resource type="Texture2D" uid="uid://clixmh5cmev7k" path="res://assets/art/Track/track-spritesheet.png" id="13_8ecey"]
+[ext_resource type="Texture2D" uid="uid://d1gducytvvdb6" path="res://assets/art/Track/track-spritesheet.png" id="13_8ecey"]
 [ext_resource type="PackedScene" uid="uid://dafks0mahk7sl" path="res://scenes/track/spiky_bubble.tscn" id="13_45tw2"]
 [ext_resource type="PackedScene" uid="uid://b52pkvnlsx20h" path="res://scenes/track/balloon.tscn" id="14_0muk7"]
 [ext_resource type="PackedScene" uid="uid://dfwapfd326y5c" path="res://scenes/launch_operators/launch_operators.tscn" id="14_ahp0x"]
-[ext_resource type="PackedScene" uid="uid://bafhjmtv2l5nm" path="res://scenes/track/firework_boost.tscn" id="15_a0sbk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c6ek7"]
 texture = ExtResource("6_a0sbk")
@@ -350,14 +349,14 @@ color = Color(0.36078432, 0.3647059, 0.4392157, 1)
 [node name="Player" parent="." unique_id=364403916 instance=ExtResource("10_yu7nl")]
 position = Vector2(-75, 72)
 
-[node name="Obstacles" type="Node2D" parent="." unique_id=1402763311]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=201033243]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
 
-[node name="Tracks" type="Node2D" parent="." unique_id=1647765800 node_paths=PackedStringArray("obstacle_container", "player")]
+[node name="Tracks" type="Node2D" parent="." unique_id=1647765800 node_paths=PackedStringArray("player")]
 script = ExtResource("11_of1br")
 obstacle_scene = ExtResource("11_w2ny7")
 moving_obstacles = Array[PackedScene]([ExtResource("13_45tw2"), ExtResource("14_0muk7")])
-boost_scene = ExtResource("15_a0sbk")
-obstacle_container = NodePath("../Obstacles")
 player = NodePath("../Player")
 
 [node name="TrackLayer1" type="TileMapLayer" parent="Tracks" unique_id=1010044100]

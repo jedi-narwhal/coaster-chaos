@@ -40,10 +40,6 @@ floor_constant_speed = true
 floor_max_angle = 3.1415927
 script = ExtResource("1_g2els")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=247820569]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=633359827]
 sprite_frames = SubResource("SpriteFrames_vgqql")
 animation = &"rolling"

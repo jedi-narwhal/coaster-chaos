@@ -10,8 +10,7 @@ _data = {
 }
 point_count = 9
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k1eo8"]
-radius = 9.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8cbv"]
 
 [node name="Path2D" type="Path2D" unique_id=1639061960]
 curve = SubResource("Curve2D_uwlog")
@@ -21,15 +20,16 @@ position = Vector2(295, -60)
 rotation = -2.5169573
 script = ExtResource("1_ttd2h")
 
-[node name="Area2D" type="Area2D" parent="PathFollow2D" unique_id=969225887]
-rotation = 2.5169573
-collision_layer = 2
+[node name="BaseObstacle" type="Area2D" parent="PathFollow2D" unique_id=1888632384]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource("1_k1eo8")
 
-[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Area2D" unique_id=56551969]
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/BaseObstacle" unique_id=56551969]
+rotation = 2.5169573
 texture = ExtResource("1_hykig")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Area2D" unique_id=228543314]
-shape = SubResource("CircleShape2D_k1eo8")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/BaseObstacle" unique_id=1575341523]
+shape = SubResource("CircleShape2D_s8cbv")
 
-[connection signal="body_entered" from="PathFollow2D/Area2D" to="PathFollow2D/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="PathFollow2D/BaseObstacle" to="PathFollow2D/BaseObstacle" method="_on_body_entered"]
